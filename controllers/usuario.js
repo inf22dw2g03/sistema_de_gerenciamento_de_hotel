@@ -3,16 +3,25 @@ const express = require('express');
 const router = express.Router(); //chamar a função 
 const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
-router.get('/usuario',async  (req, res) =>{
-    var dados = req.body;
-    console.log(dados);
-    await db.get(dados).then((dadosUsuario)=>{
-        return res.json(dadosUsuario);
-    });
+router.get("/usuario",async  (req, res) =>{
+    const usuario = await db.usuario.findAll({
+        attribute:["id","name","address","email","password","type_user"],
+        order:[['id']]
+    })
+    if (usuario){
+        return res.json({
+            usuario: usuario
+        });
+    }else{
+        return res.status(400).json({
+            mensagem : " erro: usuario não  encontrado ",
+           
+        });
+    }
 });
 
 
-router.post("/usuario", async (req, res) => {
+router.post("/usuario", async (req, res) => {  
     var dados = req.body;
     console.log(dados); 
   
