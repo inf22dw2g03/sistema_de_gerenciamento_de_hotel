@@ -72,13 +72,13 @@ criando modoles usuario
 ### npx sequelize-cli model:generate --name usuario --attributes name:string,address:string,email:string,password:string,type_user:string
 
 criando modoles hotel
-### npx sequelize-cli model:generate --hotel --attributes  nome:string, address:string,numero_quartos:integer,classification:integer,preco_noite:integer,desponibilidade:string
+### npx sequelize-cli model:generate --name hotel --attributes  nome:string,address:string,numero_quartos:integer,classification:integer,preco_noite:integer,desponibilidade:string
 
 criadondo models reserva 
-### npx sequelize-cli model:generate --reserva --attributes data_check_in:date,data_check_out:date,numero_pessoas:integer,numero_quarto:integer,preco:float,status_reserva:string
+### npx sequelize-cli model:generate --name reserva --attributes data_check_in:date,data_check_out:date,numero_pessoas:integer,numero_quarto:integer,preco:float,status_reserva:string
 
 criadondo models quarto
-### npx sequelize-cli model:generate --quartos --attributes   numero_quarto:string, tipo_quart:string,numero_cama:string, preco_noite:float, desponabilidade:string
+### npx sequelize-cli model:generate --name quartos --attributes   numero_quarto:string,tipo_quart:string,numero_cama:string,preco_noite:float,desponabilidade:string
 
 controllers -> gerencia as requisições ,rotas e urls, entre outras funcionalidade 
 
