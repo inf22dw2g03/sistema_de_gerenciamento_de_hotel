@@ -5,7 +5,7 @@ const db = require('./../db/models');//icluir o arquivo que tem a conecção com
 
 router.get("/quartos",async  (req, res) =>{
     const quarto = await db.quarto.findAll({
-        attribute:["numero_quarto","tipo_quart","numero_cama","preco_noite", "desponibilidade"], //indicar as colunas 
+        attribute:["numero_quarto","tipo_quart","numero_cama","preco_noite", "disponibilidade"], //indicar as colunas 
         order:[['id']]
     })
     if (quarto){
@@ -23,7 +23,7 @@ router.get("/quartos",async  (req, res) =>{
 router.get("/quartos/:id",async (req, res) =>{ 
     const {id} = req.params; //receber o parametro enviado na url
     const quarto = await db.quarto.findOne({
-        attribute:["numero_quarto","tipo_quart","numero_cama","preco_noite", "desponibilidade"], //indicar as colunas 
+        attribute:["numero_quarto","tipo_quart","numero_cama","preco_noite", "disponibilidade"], //indicar as colunas 
         where:{id},  //condição qual quel registo deve ser retornado 
     });
 

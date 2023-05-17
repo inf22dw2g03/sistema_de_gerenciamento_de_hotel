@@ -18,8 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     numero_quartos: DataTypes.INTEGER,
     classification: DataTypes.INTEGER,
-    preco_noite: DataTypes.INTEGER,
-    desponibilidade: DataTypes.STRING
+    disponibilidade: DataTypes.ENUM
   }, {
     sequelize,
     modelName: 'hotel',

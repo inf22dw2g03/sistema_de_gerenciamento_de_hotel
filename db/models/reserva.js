@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     numero_pessoas: DataTypes.INTEGER,
     numero_quarto: DataTypes.INTEGER,
     preco: DataTypes.FLOAT,
-    status_reserva: DataTypes.STRING
+    status_reserva: DataTypes.ENUM
   }, {
     sequelize,
     modelName: 'reserva',

@@ -7,8 +7,14 @@ const db = require('./db/models'); //testar conecção
 app.use(express.json()); // formato que quero receber 
 
 const usuario = require('./controllers/usuario');
+const hotel = require('./controllers/hotel');
+const quartos = require('./controllers/quartos');
+const reserva = require('./controllers/reserva');
 
 app.use('/',usuario);
+app.use('/',hotel);
+app.use('/',quartos);
+app.use('/',reserva);
 
 app.use(bodyParser.json());
 
