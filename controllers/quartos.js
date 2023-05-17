@@ -4,7 +4,7 @@ const router = express.Router(); //chamar a função
 const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
 router.get("/quartos",async  (req, res) =>{
-    const quarto = await db.quarto.findAll({
+    const quarto = await db.quartos.findAll({
         attribute:["numero_quarto","tipo_quart","numero_cama","preco_noite", "disponibilidade"], //indicar as colunas 
         order:[['id']]
     })

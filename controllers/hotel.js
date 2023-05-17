@@ -44,7 +44,7 @@ router.post("/hotel", async (req, res) => {
     console.log(dados); 
   
 
-    await db.quarto.create(dados).then((dadoshotel) => {   // para salvar na base de dados
+    await db.hotel.create(dados).then((dadoshotel) => {   // para salvar na base de dados
         return res.json({
             mensagem : "hotel criado com sucesso",
             dadoshotel
@@ -60,7 +60,7 @@ router.post("/hotel", async (req, res) => {
 
 router.put("/hotel", async(req, res) => {
     var dados = req.body;
-    await db.quarto.update(dados,{where: {id: dados.id}}).then(()=>{
+    await db.hotel.update(dados,{where: {id: dados.id}}).then(()=>{
        return res.json({
         mensagem : "hotel editado com sucesso"
        });
@@ -78,7 +78,7 @@ router.put("/hotel", async(req, res) => {
 
 router.delete("/hotel/:id", async(req, res) => {
     const {id} = req.params;
-     await db.quarto.destroy({
+     await db.hotel.destroy({
         where: {id:id},
      }).then(()=>{
         return res.json({

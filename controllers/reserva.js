@@ -3,15 +3,9 @@ const express = require('express');
 const router = express.Router(); //chamar a função 
 const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
-// Middleware para verificar autenticação basica
-function authenticateBasic(req, res, next) {
-    passport.authenticate('basic', {session: false})(req, res, next);
-}
-
-
-router.get("/reserva", authenticateBasic, async (req, res) =>{
+router.get("/reserva",  async (req, res) =>{
     const reserva = await db.reserva.findAll({
-        attribute:["data_check_in","data_check_out","numero_pessoass","numero_quarto","preco", "status_reserva"], //indicar as colunas 
+        attribute:["data_check_in","data_check_out","numero_pessoas","numero_quarto","preco", "status_reserva"], //indicar as colunas 
         order:[['id']]
     })
     if (reserva){
@@ -29,7 +23,7 @@ router.get("/reserva", authenticateBasic, async (req, res) =>{
 router.get("/reserva/:id",async (req, res) =>{ 
     const {id} = req.params; //receber o parametro enviado na url
     const reserva = await db.reserva.findOne({
-        attribute:["data_check_in","data_check_out","numero_pessoass","numero_quarto","preco", "status_reserva"], //indicar as colunas 
+        attribute:["data_check_in","data_check_out","numero_pessoas","numero_quarto","preco", "status_reserva"], //indicar as colunas 
         where:{id},  //condição qual quel registo deve ser retornado 
     });
 
