@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -23,5 +24,15 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'usuario',
   });
+  // metodo para verificar a senha antes de salvar o usuario no banco de dados
+  usuario.beforeCreate(async (usuario) => {
+    const hashedPassword = await bcrypt.hash(usuario.password, 10);
+    usuario.password = hashedPassword;
+  });
+
+  // metodo para verificar a senha fornecida pelo usuario
+  usuario.prototype.isValidPassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+  };
   return usuario;
 };

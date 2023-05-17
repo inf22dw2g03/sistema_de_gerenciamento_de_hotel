@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       status_reserva: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('Ativo', 'Pendente', 'Cancelado')
       },
       createdAt: {
         allowNull: false,
