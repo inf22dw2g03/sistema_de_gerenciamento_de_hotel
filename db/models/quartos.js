@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     tipo_quart: DataTypes.STRING,
     numero_cama: DataTypes.STRING,
     preco_noite: DataTypes.FLOAT,
-    disponabilidade: DataTypes.ENUM
+    disponabilidade: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'quartos',

@@ -24,7 +24,7 @@ module.exports = {
       preco_noite: {
         type: Sequelize.INTEGER
       },
-      desponibilidade: {
+      disponibilidade: {
         type: Sequelize.STRING
       },
       createdAt: {
