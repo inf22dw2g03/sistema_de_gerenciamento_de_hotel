@@ -4,13 +4,13 @@ const router = express.Router(); //chamar a função
 const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
 router.get("/hotel",async  (req, res) =>{
-    const quarto = await db.hotel.findAll({
-        attribute:["nome","numero_quartos","classification","preco_noite","disponibilidade"], //indicar as colunas 
+    const hotel = await db.hotel.findAll({
+        attribute:["id","nome","numero_quartos","classification","preco_noite","disponibilidade"], //indicar as colunas 
         order:[['id']]
     })
-    if (quarto){
+    if (hotel){
         return res.json({
-            quarto: quarto
+            hotel: hotel
         });
     }else{
         return res.status(400).json({
@@ -23,7 +23,7 @@ router.get("/hotel",async  (req, res) =>{
 router.get("/hotel/:id",async (req, res) =>{ 
     const {id} = req.params; //receber o parametro enviado na url
     const hotel = await db.hotel.findOne({
-        attribute:["nome","numero_quartos","classification","preco_noite","disponibilidade"], //indicar as colunas 
+        attribute:["id","nome","numero_quartos","classification","preco_noite","disponibilidade"], //indicar as colunas 
         where:{id},  //condição qual quel registo deve ser retornado 
     });
 
@@ -44,10 +44,10 @@ router.post("/hotel", async (req, res) => {
     console.log(dados); 
   
 
-    await db.hotel.create(dados).then((dadoshotel) => {   // para salvar na base de dados
+    await db.hotel.create(dados).then((dadosHotel) => {   // para salvar na base de dados
         return res.json({
             mensagem : "hotel criado com sucesso",
-            dadoshotel
+            dadosHotel
         });
     }).catch(() => {
         return res.json({
