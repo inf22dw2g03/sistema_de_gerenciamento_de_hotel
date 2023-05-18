@@ -10,9 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       data_check_in: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       data_check_out: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       numero_pessoas: {
