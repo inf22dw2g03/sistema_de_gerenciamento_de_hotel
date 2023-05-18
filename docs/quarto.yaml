@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: API de Gerenciamento de Reserva de Hotel
+  version: 1.0.0
+  description: Uma API para gerenciar reservas de hotéis
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /quarto:
+    get:
+      summary: Retorna todos os quartos
+      responses:
+        '200':
+          description: Sucesso
+        '500':
+          description: Erro ao obter os quartos
+
+    post:
+      summary: Cria um novo quarto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quarto'
+      responses:
+        '201':
+          description: Quarto criado com sucesso
+        '500':
+          description: Erro ao criar o quarto
+
+  /quartos/{id}:
+    get:
+      summary: Retorna um quarto específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao obter o quarto
+
+    put:
+      summary: Atualiza um quarto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quarto'
+      responses:
+        '200':
+          description: Quarto atualizado com sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao atualizar o quarto
+
+    delete:
+      summary: Exclui um quarto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Quarto excluído com sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao excluir o quarto
+
+components:
+  schemas:
+    Quarto:
+      type: object
+      properties:
+        numero_quarto:
+          type: integer
+        tipo_quart:
+          type: string
+        numero_cama:
+          type: string
+        preco_noite:
+          type: float
+        disponabilidade:
+          type: string

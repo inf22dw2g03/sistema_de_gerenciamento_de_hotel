@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: API de Gerenciamento de Reserva de Hotel
+  version: 1.0.0
+  description: Uma API para gerenciar reservas de hotéis
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /usuarios:
+    get:
+      summary: Retorna todos os usuários
+      responses:
+        '200':
+          description: Sucesso
+        '500':
+          description: Erro ao obter os usuários
+
+    post:
+      summary: Cria um novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+        '500':
+          description: Erro ao criar o usuário
+
+  /usuarios/{id}:
+    get:
+      summary: Retorna um usuário específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+        '404':
+          description: Usuário não encontrado
+        '500':
+          description: Erro ao obter o usuário
+
+    put:
+      summary: Atualiza um usuário existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '200':
+          description: Usuário atualizado com sucesso
+        '404':
+          description: Usuário não encontrado
+        '500':
+          description: Erro ao atualizar o usuário
+
+    delete:
+      summary: Exclui um usuário existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuário excluído com sucesso
+        '404':
+          description: Usuário não encontrado
+        '500':
+          description: Erro ao excluir o usuário
+
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        type_user:
+          type: string

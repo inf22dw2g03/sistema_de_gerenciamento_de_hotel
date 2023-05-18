@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: API de Gerenciamento de Reserva de Hotel
+  version: 1.0.0
+  description: Uma API para gerenciar reservas de hotéis
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /hotel:
+    get:
+      summary: Retorna todos os hotéis
+      responses:
+        '200':
+          description: Sucesso
+        '500':
+          description: Erro ao obter os hotéis
+
+    post:
+      summary: Cria um novo hotel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hotel'
+      responses:
+        '201':
+          description: Hotel criado com sucesso
+        '500':
+          description: Erro ao criar o hotel
+
+  /hoteis/{id}:
+    get:
+      summary: Retorna um hotel específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao obter o hotel
+
+    put:
+      summary: Atualiza um hotel existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hotel'
+      responses:
+        '200':
+          description: Hotel atualizado com sucesso
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao atualizar o hotel
+
+    delete:
+      summary: Exclui um hotel existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Hotel excluído com sucesso
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao excluir o hotel
+
+# Resto das rotas da API
+
+components:
+  schemas:
+    Hotel:
+      type: object
+      properties:
+        nome:
+          type: string
+        address:
+          type: string
+        numero_quartos:
+          type: integer
+        classification:
+          type: integer
+        disponibilidade:
+          type: string

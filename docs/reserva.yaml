@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: API de Gerenciamento de Reserva de Hotel
+  version: 1.0.0
+  description: Uma API para gerenciar reservas de hotéis
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /reservas:
+    get:
+      summary: Retorna todas as reservas
+      responses:
+        '200':
+          description: Sucesso
+        '500':
+          description: Erro ao obter as reservas
+
+    post:
+      summary: Cria uma nova reserva
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reserva'
+      responses:
+        '201':
+          description: Reserva criada com sucesso
+        '500':
+          description: Erro ao criar a reserva
+
+  /reservas/{id}:
+    get:
+      summary: Retorna uma reserva específica pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+        '404':
+          description: Reserva não encontrada
+        '500':
+          description: Erro ao obter a reserva
+
+    delete:
+      summary: Exclui uma reserva existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Reserva excluída com sucesso
+        '404':
+          description: Reserva não encontrada
+        '500':
+          description: Erro ao excluir a reserva
+
+components:
+  schemas:
+    Reserva:
+      type: object
+      properties:
+        data_check_in:
+          type: string
+          format: date
+        data_check_out:
+          type: string
+          format: date
+        numero_pessoas:
+          type: integer
+        numero_quarto:
+          type: integer
+        preco:
+          type: float
+        status_reserva:
+          type: string
