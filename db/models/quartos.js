@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const hotel = require('./hotel');
 module.exports = (sequelize, DataTypes) => {
   class quartos extends Model {
     /**
@@ -25,3 +26,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return quartos;
 };
+quartos.belongsTo(hotel, { foreignKey: 'hotelId'});

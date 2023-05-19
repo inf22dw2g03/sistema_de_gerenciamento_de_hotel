@@ -1,4 +1,5 @@
 'use strict';
+const Quarto = require('./quartos')
 const {
   Model
 } = require('sequelize');
@@ -18,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     numero_quartos: DataTypes.INTEGER,
     classification: DataTypes.INTEGER,
+    preco_medio: DataTypes.FLOAT,
     disponibilidade: DataTypes.STRING,
   }, {
     sequelize,
@@ -25,3 +27,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return hotel;
 };
+
+hotel.hasMany(Quarto, {foreignKey: 'hotelId'});

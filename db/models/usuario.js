@@ -1,4 +1,5 @@
 'use strict';
+const Reserva = require('./reserva');
 const bcrypt = require('bcrypt');
 const {
   Model
@@ -36,3 +37,5 @@ module.exports = (sequelize, DataTypes) => {
   };
   return usuario;
 };
+
+usuario.hasMany(Reserva, {foreignKey: 'usuarioId'});

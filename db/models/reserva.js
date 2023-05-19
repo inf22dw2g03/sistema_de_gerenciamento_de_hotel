@@ -1,4 +1,5 @@
 'use strict';
+const Usuario = require('./usuario');
 const {
   Model
 } = require('sequelize');
@@ -26,3 +27,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return reserva;
 };
+
+reserva.belongsTo(Usuario, {foreignKey: 'usuarioId'});

@@ -9,17 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      hotelId: { 
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       numero_quarto: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       tipo_quart: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       numero_cama: {
         type: Sequelize.STRING
       },
       preco_noite: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       disponabilidade: {
         type: Sequelize.STRING

@@ -21,8 +21,8 @@ module.exports = {
       classification: {
         type: Sequelize.INTEGER
       },
-      preco_noite: {
-        type: Sequelize.INTEGER
+      preco_medio: {
+        type: Sequelize.FLOAT
       },
       disponibilidade: {
         type: Sequelize.STRING
