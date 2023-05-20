@@ -24,7 +24,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Hotel'
+              $ref: '#/definitions/schemas/Hotel'
       responses:
         '201':
           description: Hotel criado com sucesso
@@ -61,7 +61,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Hotel'
+              $ref: '#/definitions/schemas/Hotel'
       responses:
         '200':
           description: Hotel atualizado com sucesso
@@ -88,7 +88,7 @@ paths:
 
 # Resto das rotas da API
 
-components:
+definitions:
   schemas:
     Hotel:
       type: object

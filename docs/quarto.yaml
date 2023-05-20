@@ -24,7 +24,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Quarto'
+              $ref: '#/definitions/schemas/Quarto'
       responses:
         '201':
           description: Quarto criado com sucesso
@@ -61,7 +61,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Quarto'
+              $ref: '#/definitions/schemas/Quarto'
       responses:
         '200':
           description: Quarto atualizado com sucesso
@@ -86,7 +86,7 @@ paths:
         '500':
           description: Erro ao excluir o quarto
 
-components:
+definitions:
   schemas:
     Quarto:
       type: object
