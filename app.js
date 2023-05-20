@@ -8,8 +8,7 @@ const usuario = require('./controllers/usuario');
 const hotel = require('./controllers/hotel');
 const quartos = require('./controllers/quartos');
 const reserva = require('./controllers/reserva');
-const YAML = require('js-yaml');
-const swaggerDocument = YAML.load('./docs'); 
+
 
 
 
@@ -19,7 +18,7 @@ app.use('/',usuario);
 app.use('/',hotel);
 app.use('/',quartos);
 app.use('/',reserva);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(bodyParser.json());
 
 

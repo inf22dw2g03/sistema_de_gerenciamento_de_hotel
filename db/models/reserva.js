@@ -28,3 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   return reserva;
 };
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
