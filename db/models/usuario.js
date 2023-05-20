@@ -37,7 +37,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return usuario;
 };
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
