@@ -1,11 +1,3 @@
-openapi: 3.0.0
-info:
-  title: API de Gerenciamento de Reserva de Hotel
-  version: 1.0.0
-  description: Uma API para gerenciar reservas de hotéis
-
-servers:
-  - url: http://localhost:3000
 
 paths:
   /hotel:

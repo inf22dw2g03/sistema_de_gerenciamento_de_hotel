@@ -4,10 +4,10 @@ const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerDefinition = {
     openapi: "3.0.0",
     info: { 
-      title: "BasicAuthentication_01",
+      title: "API de Gerenciamento de Reserva de Hotel",
       version: "1.0.0",
-      description: "Example 01 for Basic Authentication",
-      contact: { name: "Your name" },
+      description: "Uma API para gerenciar reservas de hotéis",
+      contact: { name: "inf22dw2g03" },
     },
     servers: [ {url: "http://localhost:" + config.PORT,},],
     components: {
