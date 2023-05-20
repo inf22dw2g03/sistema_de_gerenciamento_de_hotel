@@ -17,7 +17,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Usuario'
+              $ref: '#/definitions/schemas/Usuario'
       responses:
         '201':
           description: Usuário criado com sucesso
@@ -54,7 +54,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Usuario'
+              $ref: '#/definitions/schemas/Usuario'
       responses:
         '200':
           description: Usuário atualizado com sucesso
@@ -79,7 +79,7 @@ paths:
         '500':
           description: Erro ao excluir o usuário
 
-components:
+definitions:
   schemas:
     Usuario:
       type: object
