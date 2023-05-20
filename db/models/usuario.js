@@ -37,5 +37,3 @@ module.exports = (sequelize, DataTypes) => {
   };
   return usuario;
 };
-
-usuario.hasMany(Reserva, {foreignKey: 'usuarioId'});

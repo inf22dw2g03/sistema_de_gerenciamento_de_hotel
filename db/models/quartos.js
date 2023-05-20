@@ -27,4 +27,3 @@ module.exports = (sequelize, DataTypes) => {
   return quartos;
 };
 
-quartos.belongsTo(Hotel, { foreignKey: 'hotelId'});

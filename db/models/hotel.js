@@ -27,5 +27,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return hotel;
 };
-
-hotel.hasMany(Quarto, {foreignKey: 'hotelId'});

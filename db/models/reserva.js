@@ -28,4 +28,3 @@ module.exports = (sequelize, DataTypes) => {
   return reserva;
 };
 
-reserva.belongsTo(Usuario, {foreignKey: 'usuarioId'});
