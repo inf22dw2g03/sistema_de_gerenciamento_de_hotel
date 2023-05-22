@@ -1,7 +1,7 @@
 // icluir as blitiotecas
 const express = require('express');
 const router = express.Router(); //chamar a função 
-const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
+const db = require('../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
 router.get("/usuario",async  (req, res) =>{
     const usuario = await db.usuario.findAll({
@@ -16,7 +16,7 @@ router.get("/usuario",async  (req, res) =>{
         return res.status(400).json({
             mensagem : " erro: usuario não  encontrado ",
            
-        });
+        }); 
     }
 });
 

@@ -1,7 +1,7 @@
 // icluir as blitiotecas
 const express = require('express');
 const router = express.Router(); //chamar a função 
-const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
+const db = require('../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
 router.get("/hotel",async  (req, res) =>{
     const hotel = await db.hotel.findAll({

@@ -1,4 +1,4 @@
-const config =  require('./Config');
+const config =  require('../db/config/config');
 const swaggerJSDoc = require("swagger-jsdoc");
 
 const swaggerDefinition = {
