@@ -2,33 +2,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('quartos', {
+    await queryInterface.createTable('usuario_models', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      hotelId: { 
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      numero_quarto: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      tipo_quart: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      numero_cama: {
+      name: {
         type: Sequelize.STRING
       },
-      preco_noite: {
-        type: Sequelize.FLOAT,
-        allowNull: false
+      address: {
+        type: Sequelize.STRING
       },
-      disponabilidade: {
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      type_user: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -42,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('quartos');
+    await queryInterface.dropTable('usuario_models');
   }
 };

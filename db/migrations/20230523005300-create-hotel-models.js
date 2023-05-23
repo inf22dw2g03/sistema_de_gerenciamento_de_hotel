@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('hotels', {
+    await queryInterface.createTable('hotel_models', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -21,8 +21,8 @@ module.exports = {
       classification: {
         type: Sequelize.INTEGER
       },
-      preco_medio: {
-        type: Sequelize.FLOAT
+      preco_noite: {
+        type: Sequelize.INTEGER
       },
       disponibilidade: {
         type: Sequelize.STRING
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('hotels');
+    await queryInterface.dropTable('hotel_models');
   }
 };

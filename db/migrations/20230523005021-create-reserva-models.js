@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('reservas', {
+    await queryInterface.createTable('reserva_models', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,11 +10,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       data_check_in: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       data_check_out: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       numero_pessoas: {
@@ -28,10 +26,18 @@ module.exports = {
       },
       status_reserva: {
         type: Sequelize.STRING
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('reservas');
+    await queryInterface.dropTable('reserva_models');
   }
 };

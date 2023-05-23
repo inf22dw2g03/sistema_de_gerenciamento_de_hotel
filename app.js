@@ -4,14 +4,14 @@ const db = require('./db/models');
 const config =  require('./db/config/config');  
 const controllers = require('./routes');
 const usuarioController = require('./routes/usuario');
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./controllers/SwaggerSpecs');
-const auth = require('./controllers/basicSecurity');
 const hotel = require('./routes/hotel');
 const quartos = require('./routes/quartos');
 const reserva=require('./routes/reserva');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./controllers/SwaggerSpecs');
+const auth = require('./controllers/basicSecurity');
 
-const app = express();
+const app = express();//middleware 
 
 app.use(cors());
 app.use(express.json()); // Substitui o uso do bodyParser
@@ -27,6 +27,6 @@ app.use('/reserva', reserva);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(config.PORT, function () {
-  console.log(`app running on ${config.HOST}:${config.PORT}`);
+  console.log(`app correndo na  ${config.HOST}:${config.PORT}`);
 });
 
