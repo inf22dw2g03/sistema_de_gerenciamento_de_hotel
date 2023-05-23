@@ -9,7 +9,7 @@ const swaggerDefinition = {
       description: "Uma API para gerenciar reservas de hotéis",
       contact: { name: "inf22dw2g03" },
     },
-    servers: [ {url: "http://localhost:" + config.PORT,},],
+    servers: [ {url: "http://localhost"+config.PORT,},],
     components: {
       securitySchemes: {
         basicAuth: { type: "http", scheme: "basic", },

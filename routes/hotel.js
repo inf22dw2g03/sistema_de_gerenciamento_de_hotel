@@ -74,8 +74,6 @@ router.put("/hotel", async(req, res) => {
 });
 
 
-
-
 router.delete("/hotel/:id", async(req, res) => {
     const {id} = req.params;
      await db.hotel.destroy({
