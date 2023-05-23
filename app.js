@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json()); // Substitui o uso do bodyParser
 
 // Rotas
-app.use('/usuario',usuarioController ); // Exemplo de rota para o controller "usuario"
+app.use('/usuario', usuarioController); // Exemplo de rota para o controller "usuario"
 app.use('/secured', auth, controllers.secured); // Rota protegida por autenticação
 app.use('/hotel', hotel);
 app.use('/quarto', quartos);
