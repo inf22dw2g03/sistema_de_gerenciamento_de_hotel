@@ -1,4 +1,3 @@
-const hotel = require('../models/hotel');
 const Hotel = require('../models/hotel');
 
 const novoHotel = {
@@ -6,7 +5,7 @@ const novoHotel = {
     endereco: 'Cabo Verde, Praia',
     numero_quartos: 30,
     classificacao: 4,
-    preco_medio: 120,
+    preco_medio: 120.00,
     disponibilidade: 'Disponivel'
 };
 
@@ -19,10 +18,11 @@ const segundoHotel = {
     disponibilidade: 'Disponivel'
 };
 
-Hotel.create(novoHotel, segundoHotel)
+Hotel.create(novoHotel)
     .then(hotelCriado => {
-        console.log('Hotel criado com sucesso:', hotelCriado, segundoHotel);
+        console.log('Hotel criado com sucesso:', hotelCriado);
     })
     .catch(erro => {
         console.error('Erro ao criar hotel:', erro);
     });
+
