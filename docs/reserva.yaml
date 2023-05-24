@@ -7,8 +7,37 @@ paths:
       responses:
         '200':
           description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Reserva'
         '500':
           description: Erro ao obter as reservas
+
+  /reservas/{id}:
+    get:
+      summary: Retorna uma reserva específica pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Reserva'
+        '404':
+          description: Reserva não encontrada
+        '500':
+          description: Erro ao obter a reserva
 
     post:
       summary: Cria uma nova reserva
@@ -23,23 +52,28 @@ paths:
           description: Reserva criada com sucesso
         '500':
           description: Erro ao criar a reserva
-
-  /reservas/{id}:
-    get:
-      summary: Retorna uma reserva específica pelo ID
+    
+    put:
+      summary: Atualiza um reserva existente
       parameters:
         - in: path
           name: id
           required: true
           schema:
             type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/reserva'
       responses:
         '200':
-          description: Sucesso
+          description: Quarto atualizado com sucesso
         '404':
-          description: Reserva não encontrada
+          description: Quarto não encontrado
         '500':
-          description: Erro ao obter a reserva
+          description: Erro ao atualizar o quarto
 
     delete:
       summary: Exclui uma reserva existente

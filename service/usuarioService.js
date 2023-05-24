@@ -9,16 +9,16 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
-    const user = users.find(u => u.username === username && u.password === password);
-    if (user) {
-        const { password, ...userWithoutPassword } = user;
+    const usuario = usuario.find(u => u.username === username && u.password === password);
+    if (usuario) {
+        const { password, ...userWithoutPassword } = usuario;
         return true;
     }
     return false;
 }
 
 async function getAll() {
-    return users.map(u => {
+    return usuario.map(u => {
         const { password, ...userWithoutPassword } = u;
         return userWithoutPassword;
     });
