@@ -1,4 +1,4 @@
- // icluir as blitiotecas
+// icluir as blitiotecas
 const express = require('express');
 const router = express.Router(); //chamar a função 
 const db = require('../db/models');//icluir o arquivo que tem a conecção com a base de dados 
@@ -8,7 +8,7 @@ router.get("/hotel",async  (req, res) =>{
         attribute:["id","nome","numero_quartos","classification","preco_noite","disponibilidade"], //indicar as colunas 
         order:[['id']]
     })
-    if (hotel){ 
+    if (hotel){
         return res.json({
             hotel: hotel
         });

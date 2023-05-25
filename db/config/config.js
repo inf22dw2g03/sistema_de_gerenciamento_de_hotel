@@ -4,6 +4,10 @@ dotenv.config();
 
 const path = require('path');
 
+// dotenv.config({
+//   path: path.resolve(__dirname, '../environment/', `${process.env.NODE_ENVIRONMENT}.env`)
+// });
+// console.log(path.resolve(__dirname, '../environment/', `${process.env.NODE_ENVIRONMENT}.env`));
 
 
 // exportar as credenciais do db 

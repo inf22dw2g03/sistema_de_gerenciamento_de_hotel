@@ -21,7 +21,7 @@ module.exports = {
       preco_noite: {
         type: Sequelize.FLOAT
       },
-      disponabilidade: {
+      desponabilidade: {
         type: Sequelize.STRING
       },
       createdAt: {
