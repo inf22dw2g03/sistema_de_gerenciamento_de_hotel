@@ -1,8 +1,7 @@
 const router = require('express').Router();
-const userService = require('../service/usuarioService');
 
 // routes
-router.get('/usuario', getAll);
+router.get('/quarto', getAll);
 // router.get('/', getDefault);
 
 function getAll(req, res, next) {

@@ -1,7 +1,7 @@
 
 
 paths:
-  /usuarios:
+  /usuario:
     get:
       summary: Retorna todos os usuários
       security: []  # No security
@@ -16,7 +16,7 @@ paths:
                   $ref: '#/definitions/schemas/Usuario'
         '500':
           description: Erro ao obter os usuários
-  /usuarios/{id}:
+  /usuario/{id}:
     get:
       summary: Retorna um usuário específico pelo ID
       parameters:
