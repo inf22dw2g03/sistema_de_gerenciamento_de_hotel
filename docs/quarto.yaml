@@ -1,0 +1,108 @@
+
+
+paths:
+  /quarto:
+    get:
+      summary: Retorna todos os quartos
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Quarto'
+        '500':
+          description: Erro ao obter os quartos
+  /quarto/{id}:
+    get:
+      summary: Retorna um quarto específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Quarto'
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao obter o quarto
+
+    post:
+      summary: Cria um novo quarto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Quarto'
+      responses:
+        '201':
+          description: Quarto criado com sucesso
+        '500':
+          description: Erro ao criar o quarto
+
+
+    put:
+      summary: Atualiza um quarto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Quarto'
+      responses:
+        '200':
+          description: Quarto atualizado com sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao atualizar o quarto
+
+    delete:
+      summary: Exclui um quarto existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Quarto excluído com sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao excluir o quarto
+
+definitions:
+  schemas:
+    Quarto:
+      type: object
+      properties:
+        numero_quarto:
+          type: integer
+        tipo_quart:
+          type: string
+        numero_cama:
+          type: string
+        preco_noite:
+          type: float
+        disponabilidade:
+          type: string

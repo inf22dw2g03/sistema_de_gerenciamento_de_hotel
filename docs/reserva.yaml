@@ -1,0 +1,112 @@
+
+
+paths:
+  /reserva:
+    get:
+      summary: Retorna todas as reservas
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Reserva'
+        '500':
+          description: Erro ao obter as reservas
+
+  /reserva/{id}:
+    get:
+      summary: Retorna uma reserva específica pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Reserva'
+        '404':
+          description: Reserva não encontrada
+        '500':
+          description: Erro ao obter a reserva
+
+    post:
+      summary: Cria uma nova reserva
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Reserva'
+      responses:
+        '201':
+          description: Reserva criada com sucesso
+        '500':
+          description: Erro ao criar a reserva
+    
+    put:
+      summary: Atualiza um reserva existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/reserva'
+      responses:
+        '200':
+          description: Quarto atualizado com sucesso
+        '404':
+          description: Quarto não encontrado
+        '500':
+          description: Erro ao atualizar o quarto
+
+    delete:
+      summary: Exclui uma reserva existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Reserva excluída com sucesso
+        '404':
+          description: Reserva não encontrada
+        '500':
+          description: Erro ao excluir a reserva
+
+definitions:
+  schemas:
+    Reserva:
+      type: object
+      properties:
+        data_check_in:
+          type: string
+          format: date
+        data_check_out:
+          type: string
+          format: date
+        numero_pessoas:
+          type: integer
+        numero_quarto:
+          type: integer
+        preco:
+          type: float
+        status_reserva:
+          type: string

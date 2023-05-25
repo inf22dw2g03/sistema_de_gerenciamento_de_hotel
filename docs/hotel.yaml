@@ -1,0 +1,109 @@
+
+paths:
+  /hotel:
+    get:
+      summary: Retorna todos os hotéis
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Hotel'
+        '500':
+          description: Erro ao obter os hotéis
+
+  /hotel/{id}:
+    get:
+      summary: Retorna um hotel específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/schemas/Hotel'
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao obter o hotel
+    post:
+      summary: Cria um novo hotel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Hotel'
+      responses:
+        '201':
+          description: Hotel criado com sucesso
+        '500':
+          description: Erro ao criar o hotel
+
+
+    put:
+      summary: Atualiza um hotel existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Hotel'
+      responses:
+        '200':
+          description: Hotel atualizado com sucesso
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao atualizar o hotel
+
+    delete:
+      summary: Exclui um hotel existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Hotel excluído com sucesso
+        '404':
+          description: Hotel não encontrado
+        '500':
+          description: Erro ao excluir o hotel
+
+# Resto das rotas da API
+
+definitions:
+  schemas:
+    Hotel:
+      type: object
+      properties:
+        nome:
+          type: string
+        address:
+          type: string
+        numero_quartos:
+          type: integer
+        classification:
+          type: integer
+        disponibilidade:
+          type: string
