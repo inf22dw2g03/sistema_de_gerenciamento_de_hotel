@@ -1,7 +1,11 @@
 
 
 paths:
+<<<<<<< HEAD
   /usuario:
+=======
+  /usuarios:
+>>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna todos os usuários
       security: []  # No security
@@ -16,7 +20,11 @@ paths:
                   $ref: '#/definitions/schemas/Usuario'
         '500':
           description: Erro ao obter os usuários
+<<<<<<< HEAD
   /usuario/{id}:
+=======
+  /usuarios/{id}:
+>>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna um usuário específico pelo ID
       parameters:

@@ -15,7 +15,11 @@ paths:
                   $ref: '#/definitions/schemas/Quarto'
         '500':
           description: Erro ao obter os quartos
+<<<<<<< HEAD
   /quarto/{id}:
+=======
+  /quartos/{id}:
+>>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna um quarto específico pelo ID
       parameters:

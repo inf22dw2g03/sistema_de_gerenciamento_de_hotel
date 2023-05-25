@@ -15,7 +15,11 @@ paths:
         '500':
           description: Erro ao obter os hotéis
 
+<<<<<<< HEAD
   /hotel/{id}:
+=======
+  /hoteis/{id}:
+>>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna um hotel específico pelo ID
       parameters:
