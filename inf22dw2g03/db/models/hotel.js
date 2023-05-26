@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   hotel.init({
-    nome: DataTypes.STRING,
+    name: DataTypes.STRING,
     address: DataTypes.STRING,
     numero_quartos: DataTypes.INTEGER,
     classification: DataTypes.INTEGER,

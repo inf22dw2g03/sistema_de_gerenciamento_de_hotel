@@ -29,6 +29,10 @@ Além disso, foram desenvolvidos os seguintes serviços REST para o sistema de g
 
 Esses serviços permitem que os usuários gerenciem suas reservas e reservem quartos em hotéis de forma fácil e conveniente, através de uma interface amigável e segura. A camada de autenticação e autorização garante que apenas usuários autorizados possam acessar as funcionalidades do sistema, e os tokens JWT fornecem um nível adicional de segurança ao sistema, protegendo-o contra ataques maliciosos.
 sequelize é uma biblioteca javascript que facilida gerenciamento do banco de dados sql 
+
+
+
+sequelize é uma biblioteca javascript que facilida gerenciamento do banco de dados sql 
 ### npm install --save sequelize
 
 dependencia dependencia de base de datos
@@ -68,6 +72,7 @@ para executar
 modules -> tem o objetivo de manipular os registos juntamente com a base de dados 
 
 para executar  
+
 criando modoles usuario 
 ### npx sequelize-cli model:generate --name usuario --attributes name:string,address:string,email:string,password:string,type_user:string
 
@@ -80,9 +85,9 @@ criadondo models reserva
 criadondo models quarto
 ### npx sequelize-cli model:generate --name quartos --attributes   numero_quarto:string,tipo_quart:string,numero_cama:string,preco_noite:float,disponabilidade:string
 
+
+
 controllers -> gerencia as requisições ,rotas e urls, entre outras funcionalidade 
 
 
-
  
-
