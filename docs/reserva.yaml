@@ -1,11 +1,7 @@
 
 
 paths:
-<<<<<<< HEAD
   /reserva:
-=======
-  /reservas:
->>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna todas as reservas
       responses:
@@ -20,11 +16,7 @@ paths:
         '500':
           description: Erro ao obter as reservas
 
-<<<<<<< HEAD
   /reserva/{id}:
-=======
-  /reservas/{id}:
->>>>>>> cdb2426b2b071aca4bb0d1e062a0de02379d76ee
     get:
       summary: Retorna uma reserva específica pelo ID
       parameters:
