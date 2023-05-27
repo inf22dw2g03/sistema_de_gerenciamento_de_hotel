@@ -24,9 +24,11 @@ router.get('/usuario',async  (req, res) =>{
 router.post("/usuario", async (req, res) => {
     var dados = req.body;
     console.log(dados); 
-  
+    const password = await  bcrypt.hash("12345678",8);
+        console.log(password);
 
     await db.usuario.create(dados).then((dadosUsuario) => {   // para salvar na base de dados
+        
         return res.json({
             mensagem : "usuario criando com sucesso",
             dadosUsuario

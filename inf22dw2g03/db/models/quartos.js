@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.usuario, { foreignKey: 'usuario_id' });
+      this.belongsToMany(models.hotel, { through: 'TabelaPivot' });
+      this.hasOne(models.reserva, { foreignKey: 'reserva_id' });
     }
   }
   quartos.init({
@@ -25,3 +27,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return quartos;
 };
+  
