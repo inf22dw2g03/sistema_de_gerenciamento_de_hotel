@@ -29,20 +29,40 @@ router.get('/usuario', eAdmin, async  (req, res) =>{
 
 router.post("/usuario", async (req, res) => {
     var dados = req.body;
-    dados.password = await  bcrypt.hash(dados.password,8);
-
-    await db.usuario.create(dados).then((dadosUsuario) => {   // para salvar na base de dados
+  
+    if (typeof dados.password !== 'string') {
+      return res.status(400).json({
+        mensagem: "erro: senha inválida",
+      });
+    }
+  
+    if (!dados.password) {
+      return res.status(400).json({
+        mensagem: "erro: senha não fornecida",
+      });
+    }
+  
+    try {
+      dados.password = await bcrypt.hash(dados.password, 8);
+  
+      await db.usuario.create(dados).then((dadosUsuario) => {
         return res.json({
-            mensagem : "usuario criado com sucesso",
-            dadosUsuario
+          mensagem: "usuario criado com sucesso",
+          dadosUsuario,
         });
-    }).catch(() => {
+      }).catch(() => {
         return res.json({
-            mensagem : " erro: usuario não  criado com sucesso",
-           
+          mensagem: "erro: usuario não criado com sucesso",
         });
-     }); 
-});
+      });
+    } catch (error) {
+      return res.status(500).json({
+        mensagem: "erro: falha ao criar o usuário",
+        error: error.message,
+      });
+    }
+  });
+  
  
 router.get("/usuario/:id", eAdmin, async (req, res) => {
     const {id}= req.params;

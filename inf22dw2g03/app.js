@@ -25,7 +25,7 @@ app.use('/',usuarioRouter);
 app.use('/',hotelRouter); 
 app.use('/',quartosRouter);
 app.use('/',reservaRouter);
-app.use("./", loginRouter);
+app.use("/", loginRouter);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
