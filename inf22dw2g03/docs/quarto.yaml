@@ -15,6 +15,19 @@ paths:
                   $ref: '#/definitions/schemas/Quarto'
         '500':
           description: Erro ao obter os quartos
+    post:
+      summary: Cria um novo quarto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Quarto'
+      responses:
+        '201':
+          description: Quarto criado com sucesso
+        '500':
+          description: Erro ao criar o quarto
   /quarto/{id}:
     get:
       summary: Retorna um quarto específico pelo ID
@@ -38,19 +51,6 @@ paths:
         '500':
           description: Erro ao obter o quarto
 
-    post:
-      summary: Cria um novo quarto
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/schemas/Quarto'
-      responses:
-        '201':
-          description: Quarto criado com sucesso
-        '500':
-          description: Erro ao criar o quarto
 
 
     put:

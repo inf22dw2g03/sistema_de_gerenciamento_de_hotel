@@ -1,4 +1,4 @@
-const jwt= require('jwt');
+const jwt = require('jsonwebtoken');
 const {promisify}= require('util');
 
 
@@ -8,11 +8,11 @@ module.exports = {
         // console.log(authHeader);
         if(!authHeader) {
             return res.status(400).json({
-                mensagem:"erro: Necessario realizar o login para acessar a pagina! faltam o token "
+                mensagem:"erro: Necessario realizar o login para acessar a pagina! faltam o token A"
             });
         }
 
-        const [bearer, token] =authHeader.split(' ');
+        const [, token] = authHeader.split(' ');
         console.log("token:"+token);
         if(!token){
             return res.status(400).json({
@@ -20,7 +20,7 @@ module.exports = {
             })
         }
         try{
-            const decode = await promisify(jwt.verify)(token,"") //meter token
+            const decode = await promisify(jwt.verify)(token,"HsVdhjegytefjhrr4235gdxssjhjfiw8785643527y") //meter token
             req.usarioId = decode.id; 
             return next();
         }catch(err){

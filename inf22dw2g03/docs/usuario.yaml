@@ -4,7 +4,14 @@ paths:
   /usuario:
     get:
       summary: Retorna todos os usuários
-      security: []  # No security
+      security:  # No security
+        - JWT: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: Sucesso
@@ -16,6 +23,19 @@ paths:
                   $ref: '#/definitions/schemas/Usuario'
         '500':
           description: Erro ao obter os usuários
+    post:
+      summary: Cria um novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Usuario'
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+        '500':
+          description: Erro ao criar o usuário
   /usuario/{id}:
     get:
       summary: Retorna um usuário específico pelo ID
@@ -39,19 +59,6 @@ paths:
         '500':
           description: Erro ao obter o usuário
 
-    post:
-      summary: Cria um novo usuário
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/schemas/Usuario'
-      responses:
-        '201':
-          description: Usuário criado com sucesso
-        '500':
-          description: Erro ao criar o usuário
 
 
     put:

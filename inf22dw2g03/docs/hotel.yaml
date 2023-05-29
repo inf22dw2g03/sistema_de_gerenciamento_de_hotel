@@ -15,9 +15,21 @@ paths:
         '500':
           description: Erro ao obter os hotéis
 
+    post:
+      summary: Cria um novo hotel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/schemas/Hotel'
+      responses:
+        '201':
+          description: Hotel criado com sucesso
+        '500':
+          description: Erro ao criar o hotel
 
   /hotel/{id}:
-
     get:
       summary: Retorna um hotel específico pelo ID
       parameters:
@@ -39,19 +51,7 @@ paths:
           description: Hotel não encontrado
         '500':
           description: Erro ao obter o hotel
-    post:
-      summary: Cria um novo hotel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/schemas/Hotel'
-      responses:
-        '201':
-          description: Hotel criado com sucesso
-        '500':
-          description: Erro ao criar o hotel
+  
 
 
     put:

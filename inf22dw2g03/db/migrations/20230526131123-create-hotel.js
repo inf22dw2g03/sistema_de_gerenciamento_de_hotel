@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      nome: {
         type: Sequelize.STRING
       },
       address: {
@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       preco_noite: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       disponibilidade: {
         type: Sequelize.STRING

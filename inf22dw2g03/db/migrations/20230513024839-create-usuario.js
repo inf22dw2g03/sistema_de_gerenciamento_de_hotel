@@ -10,19 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       address: {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       type_user: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('Admin', 'Cliente'),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

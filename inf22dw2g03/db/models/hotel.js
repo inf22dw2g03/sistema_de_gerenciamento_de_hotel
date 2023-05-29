@@ -11,18 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Associação de um para muitos
-      this.hasMany(models.quartos, { foreignKey: 'quartos_id' });
-      this.hasMany(models.usuario, { foreignKey: 'usuario_id' });
-      this.hasMany(models.reserva, { foreignKey: 'reserva_id' });
+      this.hasMany(models.quartos, { foreignKey: 'id' });
+      this.hasMany(models.usuario, { foreignKey: 'id' });
+      this.hasMany(models.reserva, { foreignKey: 'id' });
 
     }
   }
   hotel.init({
-    name: DataTypes.STRING,
+    nome: DataTypes.STRING,
     address: DataTypes.STRING,
     numero_quartos: DataTypes.INTEGER,
     classification: DataTypes.INTEGER,
-    preco_noite: DataTypes.INTEGER,
+    preco_noite: DataTypes.FLOAT,
     disponibilidade: DataTypes.STRING
   }, {
     sequelize,

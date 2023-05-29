@@ -2,14 +2,20 @@
 const express = require('express');
 const router = express.Router(); //chamar a função 
 const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { eAdmin } = require('./auth');
 
-router.get('/usuario',async  (req, res) =>{
+
+router.get('/usuario', eAdmin, async  (req, res) =>{
     const usuario = await db.usuario.findAll({
+        attributes: ['id', 'name', 'email'],
         order:[["id", "DESC"]]
     });
     if(usuario){
         return res.json({
-           usuario
+           usuario,
+           id_usuario_logado: req.usuarioId
         });
     } else{
         return res.status(400).json({
@@ -23,25 +29,22 @@ router.get('/usuario',async  (req, res) =>{
 
 router.post("/usuario", async (req, res) => {
     var dados = req.body;
-    console.log(dados); 
-    const password = await  bcrypt.hash("12345678",8);
-        console.log(password);
+    dados.password = await  bcrypt.hash(dados.password,8);
 
     await db.usuario.create(dados).then((dadosUsuario) => {   // para salvar na base de dados
-        
         return res.json({
-            mensagem : "usuario criando com sucesso",
+            mensagem : "usuario criado com sucesso",
             dadosUsuario
         });
     }).catch(() => {
         return res.json({
-            mensagem : " erro: usuario não  criando com sucesso",
+            mensagem : " erro: usuario não  criado com sucesso",
            
         });
      }); 
 });
  
-router.get("/usuario/:id", async (req, res) => {
+router.get("/usuario/:id", eAdmin, async (req, res) => {
     const {id}= req.params;
     console.log(id);
     const usuario = await db.usuario.findOne({
