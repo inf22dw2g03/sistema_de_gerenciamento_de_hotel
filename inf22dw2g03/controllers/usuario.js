@@ -1,15 +1,15 @@
+const { eAdmin } = require('./auth');
 // icluir as blitiotecas
 const express = require('express');
 const router = express.Router(); //chamar a função 
-const db = require('./../db/models');//icluir o arquivo que tem a conecção com a base de dados 
+const db = require('./../db/models');//incluir o arquivo que tem a conecção com a base de dados 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { eAdmin } = require('./auth');
 
 
 router.get('/usuario', eAdmin, async  (req, res) =>{
     const usuario = await db.usuario.findAll({
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'name', 'email', 'password', 'type_user'],
         order:[["id", "DESC"]]
     });
     if(usuario){
@@ -19,7 +19,7 @@ router.get('/usuario', eAdmin, async  (req, res) =>{
         });
     } else{
         return res.status(400).json({
-            mensagem : " erro: usuario não  encontrado com sucesso",
+            mensagem : "Erro: Usuario não  encontrado com sucesso.",
         });
     }
 });
@@ -38,13 +38,15 @@ router.post("/usuario", async (req, res) => {
   
     if (!dados.password) {
       return res.status(400).json({
-        mensagem: "erro: senha não fornecida",
+        mensagem: "Erro: Senha não fornecida",
       });
     }
   
     try {
       dados.password = await bcrypt.hash(dados.password, 8);
-  
+
+      //console.log(password)
+
       await db.usuario.create(dados).then((dadosUsuario) => {
         return res.json({
           mensagem: "usuario criado com sucesso",
@@ -55,7 +57,7 @@ router.post("/usuario", async (req, res) => {
           mensagem: "erro: usuario não criado com sucesso",
         });
       });
-    } catch (error) {
+    } catch(error) {
       return res.status(500).json({
         mensagem: "erro: falha ao criar o usuário",
         error: error.message,

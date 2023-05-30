@@ -6,28 +6,28 @@ const jwt = require('jsonwebtoken');
 
 router.post('/login', async (req, res) => {
     const usuario = await db.usuario.findOne({
-        atributes: ['id', 'name', 'email', 'password'],
+        attributes: ['id', 'name', 'email', 'password'],
         where: {
             email: req.body.email,
         },
     });
     if (usuario === null){
         return res.status(400).json({
-            mensagem:"erro: usuario ou password incorreta!"
+            mensagem:"Erro: Usuario ou password incorreta! Usuario!"
         });
     }
-    if (!(await bcrypt.compare(req.body.password, usuario.password)))//senha meter despos
+    if (!(await bcrypt.compare(req.body.password, usuario.password)))
     {
         return res.status(400).json({
-            mensagem:"erro: usuario ou password incorreta "
+            mensagem:"Erro: Usuario ou password incorreta! Password!"
         });
     }
-    var token = jwt.sign({id: usuario.id},"HsVdhjegytefjhrr4235gdxssjhjfiw8785643527y", {
-        expiresIn: 300 // 5 mint
+    var token = jwt.sign({id: usuario.id},"ANbr0ZeNunC1oDiNg", {
+        expiresIn: 600 // 5 mint
     });
     return res.json({
-        mensagem:"login realizado com sucesso !",
-        token,
+        mensagem:"Login realizado com sucesso !",
+        token
     });
   });
 

@@ -13,10 +13,10 @@ const reservaRouter = require('./controllers/reserva');
 const loginRouter = require('./controllers/login');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./controllers/swaggerConfig");
-const {eAdmin}= require('./controllers/auth');
 
 //criar middleware
 app.use(cors());
+const {eAdmin}= require('./controllers/auth');
 app.use(express.json()); // formato que quero receber 
 app.use(bodyParser.json());
 
