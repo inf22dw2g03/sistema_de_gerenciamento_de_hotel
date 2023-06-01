@@ -10,3 +10,4 @@ module.exports = {
   'migrations-path': path.resolve('db','migrations')
 }
 
+   

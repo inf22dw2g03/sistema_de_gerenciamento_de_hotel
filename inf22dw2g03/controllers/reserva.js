@@ -1,9 +1,10 @@
 // icluir as blitiotecas
 const express = require('express');
+const { eAdmin } = require('./auth');
 const router = express.Router(); //chamar a função 
 const db = require('../db/models');//icluir o arquivo que tem a conecção com a base de dados 
 
-router.get("/reserva",  async (req, res) =>{
+router.get("/reserva", eAdmin, async (req, res) =>{
     const reserva = await db.reserva.findAll({
         attribute:["data_check_in","data_check_out","numero_pessoas","numero_quarto","preco", "status_reserva"], //indicar as colunas 
         order:[['id']]
@@ -39,7 +40,7 @@ router.get("/reserva/:id",async (req, res) =>{
 });
 
 
-router.post("/reserva", async (req, res) => {  
+router.post("/reserva",eAdmin, async (req, res) => {  
     var dados = req.body;
     console.log(dados); 
   
@@ -58,7 +59,7 @@ router.post("/reserva", async (req, res) => {
 })
 
 
-router.put("/reserva", async(req, res) => {
+router.put("/reserva",eAdmin, async(req, res) => {
     var dados = req.body;
     await db.reserva.update(dados,{where: {id: dados.id}}).then(()=>{
        return res.json({
@@ -76,7 +77,7 @@ router.put("/reserva", async(req, res) => {
 
 
 
-router.delete("/reserva/:id", async(req, res) => {
+router.delete("/reserva/:id",eAdmin, async(req, res) => {
     const {id} = req.params;
      await db.reserva.destroy({
         where: {id:id},

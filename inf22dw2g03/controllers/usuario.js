@@ -1,11 +1,10 @@
-const { eAdmin } = require('./auth');
 // icluir as blitiotecas
 const express = require('express');
+const { eAdmin } = require('./auth');
 const router = express.Router(); //chamar a função 
 const db = require('./../db/models');//incluir o arquivo que tem a conecção com a base de dados 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 
 router.get('/usuario', eAdmin, async  (req, res) =>{
     const usuario = await db.usuario.findAll({

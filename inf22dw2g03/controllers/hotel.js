@@ -1,4 +1,5 @@
 const express = require('express');
+const { eAdmin } = require('./auth');
 const router = express.Router();
 const db = require('../db/models');
 
@@ -15,6 +16,7 @@ router.get('/hotel', async (req, res) => {
     });
   }
 });
+
 
 router.get('/hotel/:id', async (req, res) => {
   try {
@@ -39,7 +41,7 @@ router.get('/hotel/:id', async (req, res) => {
   }
 });
 
-router.post('/hotel', async (req, res) => {
+router.post('/hotel',eAdmin, async (req, res) => {
   try {
     const dados = req.body;
     const novoHotel = await db.hotel.create(dados);
@@ -55,7 +57,7 @@ router.post('/hotel', async (req, res) => {
   }
 });
 
-router.put('/hotel/:id', async (req, res) => {
+router.put('/hotel/:id',eAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     const dados = req.body;
@@ -71,7 +73,7 @@ router.put('/hotel/:id', async (req, res) => {
   }
 });
 
-router.delete('/hotel/:id', async (req, res) => {
+router.delete('/hotel/:id',eAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     await db.hotel.destroy({
