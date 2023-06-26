@@ -1,0 +1,38 @@
+export default function Home() {
+
+  //Declarar a variavel para receber os registros retornado da API
+  const [data, setData] = useState([]);
+
+
+  //Declarar a variavel para receber a mensagen
+  const [message, setMessage] = useState("");
+
+  //Criar a função com requisição para API recuperar usuários
+  const getUsers = async () => {
+
+    //Realizar a requisição para API com axios para a rota listar usuarios
+    await axios.get('http://localhost:3000/usuario')
+      .then((response) => { //Acessa o then quando a API retornar status 200
+
+        //Atribuir os registros no state data
+        //console.log(response.data.users); 
+        setData(response.data.users);
+
+      }).catch((err) => { //Acessa o catch quando a API retornar erro
+        //Acessa ao IF quando a API retornar erro
+        if(err.response){
+          //Atribuir a mensagen no state message
+          setMessage(err.response.data.mensagen);
+        }else{
+          //Atribuir a mensagen no state message
+          setMessage("Erro: Tente mais tarde!");
+        }
+      });
+  }
+
+  // useEffect é usado para lidar com efeitos colaterais e um componente.
+  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
+  useEffect(() => {
+    //Chamar a função com a requisição para API
+    getUsers();
+  }, []);

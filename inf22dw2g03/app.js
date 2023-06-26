@@ -15,9 +15,9 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./controllers/swaggerConfig");
 
 //criar middleware
-app.use(cors());
 const {eAdmin}= require('./controllers/auth');
-app.use(express.json()); // formato que quero receber 
+app.use(express.json()); // formato que quero receber
+app.use(cors());
 app.use(bodyParser.json());
 
 //criar rotas api
