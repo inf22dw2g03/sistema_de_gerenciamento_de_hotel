@@ -19,9 +19,11 @@ export default function Login() {
       const { token } = response.data;
       // Aqui você pode salvar o token em algum lugar (ex: local storage) para usar nas próximas requisições
       localStorage.setItem('token', token);
-
+      console.log(token);
       // Exemplo de redirecionamento após o login
       router.push('/');
+      const token1 = localStorage.getItem('token');
+      console.log(token1);
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.mensagem);

@@ -13,7 +13,7 @@ export default function Home() {
       try {
         const response = await axios.get('http://localhost:3000/usuario', {
           headers: {
-            Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjg3NzU3MDkxLCJleHAiOjE2ODc3NjA2OTF9.YTSNW7AyMosdpY1-I1JkTA4VKldzsJlc6ibNYK9HbNY', // Substitua pelo seu token válido
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
 
@@ -44,13 +44,14 @@ export default function Home() {
         <h2>Listar Usuarios</h2>
 
        {message ? <p>{message}</p> : ""}
-       <Link href={`/visualizar/5`}> <button type="button">Visualizar</button></Link>{" "}
        {data.map(usuario => (
         <div key={usuario.id}>
           <span>ID: {usuario.id}</span><br />
           <span>Nome: {usuario.name}</span><br />
           <span>E-mail: {usuario.email}</span><br />
           <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
+          <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
+          <Link href={`/apagar/${usuario.id}`}> <button type="button">Apagar</button></Link>{" "}
           <hr />
         </div>
        ))}

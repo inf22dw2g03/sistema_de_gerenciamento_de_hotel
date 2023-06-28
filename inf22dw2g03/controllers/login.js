@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
         mensagem:"Login realizado com sucesso !",
         token
     });
+    
   });
 
 module.exports = router;// exportar a intrução que esta dentro da constante router

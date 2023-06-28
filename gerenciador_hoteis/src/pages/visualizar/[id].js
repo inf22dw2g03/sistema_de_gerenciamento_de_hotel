@@ -6,44 +6,51 @@ import { useEffect, useState } from 'react';
 
 export default function Cadastrar() {
 
-    //Declarar a variavel para receber os registros retornado da API
-    const [data, setData] = useState([]);
+  //Declarar a variavel para receber os registros retornado da API
+  const [data, setData] = useState([]);
 
-    //Declarar a variavel para receber a mensagen
-    const [message, setMessage] = useState("");
+  //Declarar a variavel para receber a mensagen
+  const [message, setMessage] = useState("");
 
-    //Receber o parametro enviado na URL
-    const router = useRouter();
-    //console.log(router.query.id);
-    const [id] = useState(router.query.id);
+  //Receber o parametro enviado na URL
+  const router = useRouter();
+  //console.log(router.query.id);
+  const [id] = useState(router.query.id);
 
-    const getUser = async () => {
-        if(id === undefined){
-            setMessage("Erro: Usuario não encontrado!");
-            return
-        }
-        await axios.get("http://localhost:3000/usuario/" + id)
-            .then((response) => {
-                console.log(response.data.usuario);
-                //Atribuir o registro no state data
-                setData(response.data.usuario);
-            }).catch((err) => {//Acessa o catch quando a API retornar erro
-                //Acessa ao IF quando a API retornar erro
-                if(err.response){
-                  //Atribuir a mensagen no state message
-                  setMessage(err.response.data.mensagen);
-                }else{
-                  //Atribuir a mensagen no state message
-                  setMessage("Erro: Tente mais tarde!");
-                }
-            });
+  const getUser = async () => {
+    if (id === undefined) {
+      setMessage("Erro: Usuario não encontrado!");
+      return
     }
 
-    // useEffect é usado para lidar com efeitos colaterais e um componente.
-    //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
-    useEffect(() => {
-        getUser();
-    },[id]);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`, 
+      },
+    };
+    await axios.get("http://localhost:3000/usuario/" + id, config)
+      .then((response) => {
+        console.log(response.data.usuario);
+        //Atribuir o registro no state data
+
+        setData(response.data.usuario);
+      }).catch((err) => {//Acessa o catch quando a API retornar erro
+        //Acessa ao IF quando a API retornar erro
+        if (err.response) {
+          //Atribuir a mensagen no state message
+          setMessage(err.response.data.mensagen);
+        } else {
+          //Atribuir a mensagen no state message
+          setMessage("Erro: Tente mais tarde!");
+        }
+      });
+  }
+
+  // useEffect é usado para lidar com efeitos colaterais e um componente.
+  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
+  useEffect(() => {
+    getUser();
+  }, [id]);
 
   return (
     <>
@@ -54,16 +61,16 @@ export default function Cadastrar() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-      <Link href={"/"}><button type="button">Listar</button> </Link>
+        <Link href={"/"}><button type="button">Listar</button> </Link>
 
-       <h2>Detalhes do Usuario</h2>
+        <h2>Detalhes do Usuario</h2>
 
-       {message ? <p>{message}</p> : ""}
+        {message ? <p>{message}</p> : ""}
 
-        <span>ID: {data.id}</span><br /> 
-        <span>Name: {data.name}</span><br /> 
-        <span>Email: {data.email}</span><br /> 
-      
+        <span>ID: {data.id}</span><br />
+        <span>Name: {data.name}</span><br />
+        <span>Email: {data.email}</span><br />
+
       </main>
     </>
   )
