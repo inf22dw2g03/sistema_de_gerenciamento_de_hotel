@@ -15,11 +15,9 @@ services:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
       DB_DIALECT: ${DB_DIALECT}
-
+    
   db:
     image: mysql:8.0
     environment:
       MYSQL_DATABASE: ${DB_BASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-
+      MYSQL_ROOT_PASSWORD:  12345678
