@@ -15,10 +15,10 @@ export default function Visualizar() {
   //Receber o parametro enviado na URL
   const router = useRouter();
   //console.log(router.query.id);
-  const [id] = useState(router.query.id);
+  const [id_quartos] = useState(router.query.id);
 
   const getUser = async () => {
-    if (id === undefined) {
+    if (id_quartos === undefined) {
       setMessage("Erro: quarto não encontrado!");
       return
     }
@@ -28,7 +28,7 @@ export default function Visualizar() {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-    await axios.get("http://localhost:3000/quarto/" + id, config)
+    await axios.get("http://localhost:3000/quarto/" + id_quartos, config)
       .then((response) => {
         console.log(response.data.quarto);
         //Atribuir o registro no state data
@@ -50,7 +50,7 @@ export default function Visualizar() {
   //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
   useEffect(() => {
     getUser();
-  }, [id]);
+  }, [id_quartos]);
 
   return (
     <>

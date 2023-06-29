@@ -64,8 +64,8 @@ export default function Home() {
             <span>numero_cama: {quarto.numero_cama}</span><br />
             <span>preco_noite: {quarto.preco_noite}</span><br />
             <span>disponabilidade: {quarto.disponabilidade}</span><br />
-            <Link href={`/visualizar/${quarto.id}`}> <button type="button">Visualizar</button></Link>{" "}
-            <Link href={`/editar/${quarto.id}`}> <button type="button">Editar</button></Link>{" "}
+            <Link href={`/visualizar/${quarto.id_quartos}`}> <button type="button">Visualizar</button></Link>{" "}
+            <Link href={`/editar/${quarto.id_quartos}`}> <button type="button">Editar</button></Link>{" "}
             <button type="button" onClick={()=> deleteUser(quarto.id)}>Apagar</button>{" "}
             <hr />
           </div>
