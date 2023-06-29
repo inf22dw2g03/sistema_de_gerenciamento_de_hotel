@@ -1,20 +1,23 @@
-# Use a imagem base do Node.js
-FROM node:14
+FROM node:14-alpine
 
-# Configura o diretório de trabalho no contêiner
+# Set the working directory
 WORKDIR /app
 
-# Copia o arquivo package.json para o diretório de trabalho
-COPY package.json .
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
-# Instala as dependências do aplicativo
-RUN npm install
+# Install dependencies
+RUN npm install --force
 
-# Copia todos os arquivos do projeto para o diretório de trabalho
+# Copy the rest of the app's source code
 COPY . .
 
-# Expõe a porta do aplicativo
+# Build the React app
+RUN npm run build
+
+# Expose the port that the app will run on
 EXPOSE 3001
 
-# Comando para iniciar o aplicativo
+# Specify the command to run your app
 CMD ["npm", "start"]
+
