@@ -12,13 +12,13 @@ export default function Home() {
 
   const fetchUsuarios = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/usuario', {
+      const response = await axios.get('http://localhost:3000/reserva', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
 
-      setData(response.data.usuario);
+      setData(response.data.reserva);
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.mensagem);
@@ -31,9 +31,9 @@ export default function Home() {
     fetchUsuarios();
   }, []);
 
-  const deleteUser = async (usuarioid) => {
-    console.log(usuarioid);
-    const response = await serviceDelete('http://localhost:3000/usuario/' + usuarioid);
+  const deleteUser = async (reservaid) => {
+    console.log(reservaid);
+    const response = await serviceDelete('http://localhost:3000/reserva/' + reservaid);
     setMessage(response);
     fetchUsuarios();
   };
@@ -53,17 +53,21 @@ export default function Home() {
         <Link href={"/listar_hotel"}><button type="button">hotel</button> </Link>
         <Link href={"/listar_quartos"}><button type="button">quartos</button> </Link>
         <Link href={"/listar_reserva"}><button type="button">reserva</button> </Link>
-        <h2>Listar Usuarios</h2>
+        <h2>Listar reservas</h2>
 
         {message ? <p>{message}</p> : ""}
-        {data.map(usuario => (
-          <div key={usuario.id}>
-            <span>ID: {usuario.id}</span><br />
-            <span>Nome: {usuario.name}</span><br />
-            <span>E-mail: {usuario.email}</span><br />
-            <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
-            <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(usuario.id)}>Apagar</button>{" "}
+        {data.map(reserva => (
+          <div key={reserva.id}>
+            <span>ID: {reserva.id}</span><br />
+            <span>data_check_in: {reserva.data_check_in}</span><br />
+            <span>data_check_out: {reserva.data_check_out}</span><br />
+            <span>numero_pessoas: {reserva.numero_pessoas}</span><br />
+            <span>numero_quarto: {reserva.numero_quarto}</span><br />
+            <span>preco: {reserva.preco}</span><br />
+            <span>status_reserva: {reserva.status_reserva}</span><br />
+            <Link href={`/visualizar/${reserva.id}`}> <button type="button">Visualizar</button></Link>{" "}
+            <Link href={`/editar/${reserva.id}`}> <button type="button">Editar</button></Link>{" "}
+            <button type="button" onClick={()=> deleteUser(reserva.id)}>Apagar</button>{" "}
             <hr />
           </div>
         ))}

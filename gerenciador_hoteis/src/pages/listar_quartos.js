@@ -12,13 +12,13 @@ export default function Home() {
 
   const fetchUsuarios = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/usuario', {
+      const response = await axios.get('http://localhost:3000/quarto', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
 
-      setData(response.data.usuario);
+      setData(response.data.quarto);
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.mensagem);
@@ -31,9 +31,9 @@ export default function Home() {
     fetchUsuarios();
   }, []);
 
-  const deleteUser = async (usuarioid) => {
-    console.log(usuarioid);
-    const response = await serviceDelete('http://localhost:3000/usuario/' + usuarioid);
+  const deleteUser = async (quartoid) => {
+    console.log(quartoid);
+    const response = await serviceDelete('http://localhost:3000/quarto/' + quartoid);
     setMessage(response);
     fetchUsuarios();
   };
@@ -53,20 +53,23 @@ export default function Home() {
         <Link href={"/listar_hotel"}><button type="button">hotel</button> </Link>
         <Link href={"/listar_quartos"}><button type="button">quartos</button> </Link>
         <Link href={"/listar_reserva"}><button type="button">reserva</button> </Link>
-        <h2>Listar Usuarios</h2>
+        <h2>Listar quartos</h2>
 
         {message ? <p>{message}</p> : ""}
-        {data.map(usuario => (
-          <div key={usuario.id}>
-            <span>ID: {usuario.id}</span><br />
-            <span>Nome: {usuario.name}</span><br />
-            <span>E-mail: {usuario.email}</span><br />
-            <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
-            <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(usuario.id)}>Apagar</button>{" "}
+        {data.map(quarto => (
+          <div key={quarto.id}>
+            <span>ID: {quarto.id}</span><br />
+            <span>numero_quarto: {quarto.numero_quarto}</span><br />
+            <span>tipo_quart: {quarto.tipo_quart}</span><br />
+            <span>numero_cama: {quarto.numero_cama}</span><br />
+            <span>preco_noite: {quarto.preco_noite}</span><br />
+            <span>disponabilidade: {quarto.disponabilidade}</span><br />
+            <Link href={`/visualizar/${quarto.id}`}> <button type="button">Visualizar</button></Link>{" "}
+            <Link href={`/editar/${quarto.id}`}> <button type="button">Editar</button></Link>{" "}
+            <button type="button" onClick={()=> deleteUser(quarto.id)}>Apagar</button>{" "}
             <hr />
           </div>
-        ))}
+        ))} 
 
         <br />
         <br />

@@ -12,13 +12,9 @@ export default function Home() {
 
   const fetchUsuarios = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/usuario', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await axios.get('http://localhost:3000/hotel');
 
-      setData(response.data.usuario);
+      setData(response.data.hotel);
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.mensagem);
@@ -31,9 +27,9 @@ export default function Home() {
     fetchUsuarios();
   }, []);
 
-  const deleteUser = async (usuarioid) => {
-    console.log(usuarioid);
-    const response = await serviceDelete('http://localhost:3000/usuario/' + usuarioid);
+  const deleteUser = async (hotelid) => {
+    console.log(hotelid);
+    const response = await serviceDelete('http://localhost:3000/hotel' + hotelid);
     setMessage(response);
     fetchUsuarios();
   };
@@ -53,17 +49,21 @@ export default function Home() {
         <Link href={"/listar_hotel"}><button type="button">hotel</button> </Link>
         <Link href={"/listar_quartos"}><button type="button">quartos</button> </Link>
         <Link href={"/listar_reserva"}><button type="button">reserva</button> </Link>
-        <h2>Listar Usuarios</h2>
+        <h2>Listar hotel</h2>
 
         {message ? <p>{message}</p> : ""}
-        {data.map(usuario => (
-          <div key={usuario.id}>
-            <span>ID: {usuario.id}</span><br />
-            <span>Nome: {usuario.name}</span><br />
-            <span>E-mail: {usuario.email}</span><br />
-            <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
-            <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(usuario.id)}>Apagar</button>{" "}
+        {data.map(hotel => (
+          <div key={hotel.id}>
+            <span>ID: {hotel.id}</span><br />
+            <span>Nome: {hotel.name}</span><br />
+            <span>address: {hotel.address}</span><br />
+            <span>numero_quartos: {hotel.numero_quartos}</span><br />
+            <span>classification: {hotel.classification}</span><br />
+            <span>preco_noite {hotel.preco_noite}</span><br />
+            <span>disponibilidade {hotel.disponibilidade}</span><br />
+            <Link href={`/visualizar/${hotel.id}`}> <button type="button">Visualizar</button></Link>{" "}
+            <Link href={`/editar/${hotel.id}`}> <button type="button">Editar</button></Link>{" "}
+            <button type="button" onClick={()=> deleteUser(hotel.id)}>Apagar</button>{" "}
             <hr />
           </div>
         ))}
