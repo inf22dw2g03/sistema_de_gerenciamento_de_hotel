@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export default function Cadastrar() {
+export default function Visualizar() {
 
   //Declarar a variavel para receber os registros retornado da API
   const [data, setData] = useState([]);
@@ -61,7 +61,8 @@ export default function Cadastrar() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <Link href={"/"}><button type="button">Listar</button> </Link>
+        <Link href={"/"}><button type="button">Listar</button> </Link>{" "}
+        <Link href={`/editar/${data.id}`}> <button type="button">Editar</button></Link>{" "}
 
         <h2>Detalhes do Usuario</h2>
 

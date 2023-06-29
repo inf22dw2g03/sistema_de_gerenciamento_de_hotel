@@ -3,38 +3,73 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Editar() {
 
     const [data, setData] = useState({
         id: '',
         name: '',
-        email: ''
+        address: '',
+        email: '',
+        password: '',
+        type_user: ''
     });
 
     const [message, setMessage] = useState("");
 
-    const router = userRouter();
-    useState(router.query.id);
-    console.log(router.query.id);
+    const router = useRouter();
+    const [id] = useState(router.query.id);
 
     const getUser = async () => {
         if (id === undefined){
         setMessage("Erro: Usuario nao encontrado!");
         return
         }
-        await axios.get("http://localhost:3000/usuario/" + id)
-        .then((response) => {
 
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        };
+        await axios.get("http://localhost:3000/usuario/" + id, config)
+        .then((response) => {
+            setData(response.data.usuario);
         }).catch((err) => {
             if (err.response){
-
+                setMessage(err.response.data.mensagem);
             }else{
-                setMessage("Erro: Tente mais tarde!")
+                setMessage("Erro: Tente mais tarde!");
             }
         });
     }
+
+    useEffect(() => {
+        getUser();
+      }, [id]);
+
+      const valueInput = (e) => setData({...data, [e.target.name]: e.target.value});
+
+      const editUser = async (e) => {
+        e.preventDefault();
+
+        const headers = {
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        };
+        await axios.put('http://localhost:3000/usuario/', data, headers)
+        .then((response) => {
+            setMessage(response.data.mensagem);
+        }).catch((err) => {
+            if (err.response) {
+                setMessage(err.response.data.mensagem);
+            }else {
+                setMessage("Erro: Tente novamente mais tarde ou entre contato com <a href='mailto:a041711@umaia.pt'> Etson Silva ou !");
+            }
+        });
+      }
+
   return (
     <>
       <Head>
@@ -49,7 +84,23 @@ export default function Editar() {
         <h2>Editar o Usuario</h2>
 
         {message ? <p>{message}</p> : ""}
+        
+        <form onSubmit={editUser}>
+            <input type='hidden' name='id' value={data.id} />
 
+            <label>Name:</label>
+            <input type='text' name='name' placeholder='Digite o nome' onChange={valueInput} value={data.name}/> <br /><br />
+            <label>Endereco:</label>
+            <input type='text' name='address' placeholder='Digite o endereço' onChange={valueInput} value={data.address}/> <br /><br />
+            <label>E-mail:</label>
+            <input type='text' name='email' placeholder='Digite o e-mail' onChange={valueInput} value={data.email}/> <br /><br />
+            <label>Password:</label>
+            <input type='text' name='password' placeholder='Digite a palavra-passe' onChange={valueInput} value={data.password}/> <br /><br />
+            <label>Type_User:</label>
+            <input type='text' name='type_user' placeholder='Digite o tipo de usuario' onChange={valueInput} value={data.type_user}/> <br /><br />
+
+            <button type='submit'>Guardar Alterações</button>
+        </form>
       </main>
     </>
   )
