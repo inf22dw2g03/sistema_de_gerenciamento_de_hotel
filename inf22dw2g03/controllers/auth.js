@@ -29,7 +29,7 @@ module.exports = {
             const usuario = await db.usuario.findOne({
                 where: {
                     id: decode.id,
-                    type_user: 'Admin',
+                    type_user: 'admin',
                 },
             });
             if (!usuario) {

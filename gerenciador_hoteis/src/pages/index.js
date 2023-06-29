@@ -3,32 +3,40 @@ import { useEffect, useState } from 'react';
 //Biblioteca para conectar com a api
 import axios from 'axios';
 import Link from 'next/link';
+import { serviceDelete } from './service/serviceDelete';
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    const fetchUsuarios = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/usuario', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
 
-        setData(response.data.usuario);
-      } catch (error) {
-        if (error.response) {
-          setMessage(error.response.data.mensagem);
-        } else {
-          setMessage("Erro: Tente novamente mais tarde!");
-        }
+  const fetchUsuarios = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/usuario', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      setData(response.data.usuario);
+    } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data.mensagem);
+      } else {
+        setMessage("Erro: Tente novamente mais tarde!");
       }
     }
-
+  };
+  useEffect(() => {
     fetchUsuarios();
   }, []);
+
+  const deleteUser = async (usuarioid) => {
+    console.log(usuarioid);
+    const response = await serviceDelete('http://localhost:3000/usuario/' + usuarioid);
+    setMessage(response);
+    fetchUsuarios();
+  };
 
   return (
     <>
@@ -43,23 +51,23 @@ export default function Home() {
         <Link href={"/login"}><button type="button">Login</button> </Link>
         <h2>Listar Usuarios</h2>
 
-       {message ? <p>{message}</p> : ""}
-       {data.map(usuario => (
-        <div key={usuario.id}>
-          <span>ID: {usuario.id}</span><br />
-          <span>Nome: {usuario.name}</span><br />
-          <span>E-mail: {usuario.email}</span><br />
-          <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
-          <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
-          <Link href={`/apagar/${usuario.id}`}> <button type="button">Apagar</button></Link>{" "}
-          <hr />
-        </div>
-       ))}
+        {message ? <p>{message}</p> : ""}
+        {data.map(usuario => (
+          <div key={usuario.id}>
+            <span>ID: {usuario.id}</span><br />
+            <span>Nome: {usuario.name}</span><br />
+            <span>E-mail: {usuario.email}</span><br />
+            <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
+            <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
+            <button type="button" onClick={()=> deleteUser(usuario.id)}>Apagar</button>{" "}
+            <hr />
+          </div>
+        ))}
 
-       <br />
-       <br />
-       <br />
-       <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </main>
     </>
   )

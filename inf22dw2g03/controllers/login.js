@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
         });
     }
     var token = jwt.sign({id: usuario.id},"ANbr0ZeNunC1oDiNg", {
-        expiresIn: 3600 // 5 mint
+        expiresIn: 3600000 // tempo login
     });
     return res.json({
         mensagem:"Login realizado com sucesso !",
