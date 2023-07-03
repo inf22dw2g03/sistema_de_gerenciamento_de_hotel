@@ -28,7 +28,6 @@ app.use('/',reservaRouter);
 app.use("/", loginRouter);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
 app.listen(port, () => {
   console.log(`Servidor rodando na porta http://localhost:${port}`);
 });
