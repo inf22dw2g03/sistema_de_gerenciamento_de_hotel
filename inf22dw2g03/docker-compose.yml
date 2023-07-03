@@ -18,7 +18,8 @@ services:
     
   db:
     image: mysql:8.0
-
+    ports:
+      - 3306:3306
     environment:
       MYSQL_DATABASE: ${DB_BASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
