@@ -18,6 +18,7 @@ services:
     
   db:
     image: mysql:8.0
+
     environment:
       MYSQL_DATABASE: ${DB_BASE}
-      MYSQL_ROOT_PASSWORD:  12345678
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
