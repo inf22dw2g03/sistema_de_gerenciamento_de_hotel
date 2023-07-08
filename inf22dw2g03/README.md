@@ -68,6 +68,9 @@ Rollback migration -> permite desfazer a migrations feito na alteração db
 para executar 
 ### npx sequelize-cli db:migrate:undo -- nome da migrations
 
+para criar base de dados
+### npx sequelize db:create 
+
 
 modules -> tem o objetivo de manipular os registos juntamente com a base de dados 
 

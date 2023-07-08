@@ -1,13 +1,13 @@
 INSERT INTO usuarios (name, address, email, password, type_user)
 VALUES
   ('John Doe', '123 Main St', 'john.doe@example.com', 'password123', 'cliente'),
-  ('Jane Smith', '456 Elm St', 'jane.smith@example.com', 'password456', 'Normal'),
-  ('Michael Johnson', '789 Oak St', 'michael.johnson@example.com', 'password789', 'Admin'),
+  ('Jane Smith', '456 Elm St', 'jane.smith@example.com', 'password456', 'cliente'),
+  ('Michael Johnson', '789 Oak St', 'michael.johnson@example.com', 'password789', 'cliente'),
   ('Emily Williams', '321 Pine St', 'emily.williams@example.com', 'password321', 'cliente'),
   ('David Brown', '654 Cedar St', 'david.brown@example.com', 'password654', 'cliente'),
   ('Sarah Davis', '987 Walnut St', 'sarah.davis@example.com', 'password987', 'cliente'),
   ('Robert Wilson', '159 Maple St', 'robert.wilson@example.com', 'password159', 'cliente'),
-  ('Jennifer Jones', '753 Birch St', 'jennifer.jones@example.com', 'password753', 'Admin'),
+  ('Jennifer Jones', '753 Birch St', 'jennifer.jones@example.com', 'password753', 'cliente'),
   ('Christopher Taylor', '852 Poplar St', 'christopher.taylor@example.com', 'password852', 'cliente'),
   ('Jessica Anderson', '369 Fir St', 'jessica.anderson@example.com', 'password369', 'cliente');
 INSERT INTO reservas (data_check_in, data_check_out, numero_pessoas, numero_quarto, preco, status_reserva, usuario_id)
