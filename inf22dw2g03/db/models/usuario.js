@@ -34,25 +34,25 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       } 
     },
-    reservaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'reserva',
-        key: 'id'
-      } 
-    },
-    quartosId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'quartos',
-        key: 'id'
-      } 
-    }
+    // reservaId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: { 
+    //     model: 'reserva', 
+    //     key: 'id'
+    //   } 
+    // },
+    // quartosId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'quartos',
+    //     key: 'id'
+    //   } 
+    // }
   }, {
     sequelize,
     modelName: 'usuario',
   });
   return usuario;
-};
+}; 

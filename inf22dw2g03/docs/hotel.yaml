@@ -107,5 +107,7 @@ definitions:
           type: integer
         classification:
           type: integer
+        preco_noite:
+          type:floating
         disponibilidade:
           type: string
