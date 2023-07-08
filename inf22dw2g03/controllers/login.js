@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 router.post('/login', async (req, res) => {
     const usuario = await db.usuario.findOne({
-        attributes: ['id', 'name', 'email', 'password'],
+        attributes: [ 'name', 'password'],
         where: {
             email: req.body.email,
         },
@@ -30,6 +30,6 @@ router.post('/login', async (req, res) => {
         token
     });
     
-  });
+  }); 
 
 module.exports = router;// exportar a intrução que esta dentro da constante router
