@@ -103,6 +103,6 @@ definitions:
         numero_cama:
           type: string
         preco_noite:
-          type: float
+          type: floating
         disponabilidade:
           type: string
