@@ -92,8 +92,11 @@ criadondo models quarto
 
 controllers -> gerencia as requisições ,rotas e urls, entre outras funcionalidade 
 
+iniciar as imagens do docker
 
-jwt ->
+### docker compose up
+atualiza
+### docker compose up --build
 
 
  

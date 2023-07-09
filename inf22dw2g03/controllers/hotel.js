@@ -41,7 +41,7 @@ router.get('/hotel/:id', async (req, res) => {
   }
 });
 
-router.post('/hotel', async (req, res) => {
+router.post('/hotel',eAdmin, async (req, res) => {
   try {
     const dados = req.body;
     const novoHotel = await db.hotel.create(dados);
