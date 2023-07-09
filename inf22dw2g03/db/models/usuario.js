@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Associação muitos para um
-      this.belongsTo(models.hotel, { foreignKey: 'hotelId' });
-      // Associação de um para um
-      this.hasOne(models.reserva, { foreignKey: 'reservaId' });
-      this.hasOne(models.quartos, { foreignKey: 'quartosId' });
+      // // Associação muitos para um
+      // this.belongsTo(models.hotel, { foreignKey: 'hotelId' });
+      // // Associação de um para um
+      // this.hasOne(models.reserva, { foreignKey: 'reservaId' });
+      // this.hasOne(models.quartos, { foreignKey: 'quartosId' });
 
 
     }
@@ -26,14 +26,13 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     type_user: DataTypes.STRING,
-    hotelId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'hotel',
-        key: 'id'
-      } 
-    },
+    // hotelId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'hotel',
+    //     key: 'id'
+    //   } 
     // reservaId: {
     //   type: DataTypes.INTEGER,
     //   allowNull: false,

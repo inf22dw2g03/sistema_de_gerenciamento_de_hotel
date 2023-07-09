@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     data_check_out: DataTypes.DATE,
     numero_pessoas: DataTypes.INTEGER,
     numero_quarto: DataTypes.INTEGER,
-    preco: DataTypes.FLOAT,
+    preco: DataTypes.INTEGER,
     status_reserva: DataTypes.STRING
   }, {
     sequelize,

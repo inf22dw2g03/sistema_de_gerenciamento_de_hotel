@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       preco_noite: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
       },
       disponibilidade: {
         type: Sequelize.STRING

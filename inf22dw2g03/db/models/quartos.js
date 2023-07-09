@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     numero_quarto: DataTypes.STRING,
     tipo_quart: DataTypes.STRING,
     numero_cama: DataTypes.STRING,
-    preco_noite: DataTypes.FLOAT,
+    preco_noite: DataTypes.INTEGER,
     disponabilidade: DataTypes.STRING
   }, {
     sequelize,

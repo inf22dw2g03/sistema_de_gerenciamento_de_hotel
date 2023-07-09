@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     numero_quartos: DataTypes.INTEGER,
     classification: DataTypes.INTEGER,
-    preco_noite: DataTypes.FLOAT,
+    preco_noite: DataTypes.INTEGER,
     disponibilidade: DataTypes.STRING
   }, {
     sequelize,

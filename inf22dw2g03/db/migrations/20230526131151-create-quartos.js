@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       preco_noite: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
       },
       disponabilidade: {
         type: Sequelize.STRING

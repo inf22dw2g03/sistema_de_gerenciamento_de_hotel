@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       preco: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
       },
       status_reserva: {
         type: Sequelize.STRING

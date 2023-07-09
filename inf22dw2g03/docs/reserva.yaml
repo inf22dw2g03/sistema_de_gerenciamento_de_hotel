@@ -107,6 +107,6 @@ definitions:
         numero_quarto:
           type: integer
         preco:
-          type: float
+          type: integer
         status_reserva:
           type: string
