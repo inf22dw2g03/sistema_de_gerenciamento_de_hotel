@@ -27,7 +27,7 @@ export default function Home() {
     fetchHotel();
   }, []);
 
-  const deleteUser = async (hotelid) => {
+  const deleteHotel = async (hotelid) => {
     console.log(hotelid);
     const response = await serviceDelete('http://localhost:3000/hotel' + hotelid);
     setMessage(response);
@@ -62,7 +62,7 @@ export default function Home() {
             <span>disponibilidade {hotel.disponibilidade}</span><br />
             <Link href={`/visualizar/${hotel.id}`}> <button type="button">Visualizar</button></Link>{" "}
             <Link href={`/editar/${hotel.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(hotel.id)}>Apagar</button>{" "}
+            <button type="button" onClick={()=> deleteHotel(hotel.id)}>Apagar</button>{" "}
             <hr />
           </div>
         ))}

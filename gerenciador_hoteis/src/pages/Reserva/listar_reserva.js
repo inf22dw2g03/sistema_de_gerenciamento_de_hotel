@@ -31,7 +31,7 @@ export default function Home() {
     fetchReserva();
   }, []);
 
-  const deleteUser = async (reservaid) => {
+  const deleteReserva = async (reservaid) => {
     console.log(reservaid);
     const response = await serviceDelete('http://localhost:3000/reserva/' + reservaid);
     setMessage(response);
@@ -66,7 +66,7 @@ export default function Home() {
             <span>status_reserva: {reserva.status_reserva}</span><br />
             <Link href={`/visualizar/${reserva.id}`}> <button type="button">Visualizar</button></Link>{" "}
             <Link href={`/editar/${reserva.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(reserva.id)}>Apagar</button>{" "}
+            <button type="button" onClick={()=> deleteReserva(reserva.id)}>Apagar</button>{" "}
             <hr />
           </div>
         ))}

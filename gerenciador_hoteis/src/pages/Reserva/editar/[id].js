@@ -9,11 +9,12 @@ export default function Editar() {
 
     const [data, setData] = useState({
         id: '',
-        name: '',
-        address: '',
-        email: '',
-        password: '',
-        type_user: ''
+        data_check_in: '',
+        data_check_out: '',
+        numero_pessoas: '',
+        numero_quarto: '',
+        preco: '',
+        status_reserva: ''
     });
 
     const [message, setMessage] = useState("");
@@ -21,9 +22,9 @@ export default function Editar() {
     const router = useRouter();
     const [id] = useState(router.query.id);
 
-    const getUser = async () => {
+    const getReserva = async () => {
         if (id === undefined){
-        setMessage("Erro: Usuario nao encontrado!");
+        setMessage("Erro: Reserva nao encontrado!");
         return
         }
 
@@ -32,9 +33,9 @@ export default function Editar() {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        await axios.get("http://localhost:3000/usuario/" + id, config)
+        await axios.get("http://localhost:3000/reserva/" + id, config)
         .then((response) => {
-            setData(response.data.usuario);
+            setData(response.data.reserva);
         }).catch((err) => {
             if (err.response){
                 setMessage(err.response.data.mensagem);
@@ -45,12 +46,12 @@ export default function Editar() {
     }
 
     useEffect(() => {
-        getUser();
+        getReserva();
       }, [id]);
 
-      const valueInput = (e) => setData({...data, [e.target.name]: e.target.value});
+      const valueInput = (e) => setData({...data, [e.target.data_check_in]: e.target.value});
 
-      const editUser = async (e) => {
+      const editReserva = async (e) => {
         e.preventDefault();
 
         const headers = {
@@ -58,7 +59,7 @@ export default function Editar() {
                 'Content-Type': 'application/json'
             }
         };
-        await axios.put('http://localhost:3000/usuario/', data, headers)
+        await axios.put('http://localhost:3000/reserva/', data, headers)
         .then((response) => {
             setMessage(response.data.mensagem);
         }).catch((err) => {
@@ -81,23 +82,25 @@ export default function Editar() {
       <main >
         <Link href={"/"}><button type="button">Listar</button> </Link>
 
-        <h2>Editar o Usuario</h2>
+        <h2>Editar o Reserva</h2>
 
         {message ? <p>{message}</p> : ""}
         
-        <form onSubmit={editUser}>
+        <form onSubmit={editReserva}>
             <input type='hidden' name='id' value={data.id} />
 
-            <label>Name:</label>
-            <input type='text' name='name' placeholder='Digite o nome' onChange={valueInput} value={data.name}/> <br /><br />
-            <label>Endereco:</label>
-            <input type='text' name='address' placeholder='Digite o endereço' onChange={valueInput} value={data.address}/> <br /><br />
-            <label>E-mail:</label>
-            <input type='text' name='email' placeholder='Digite o e-mail' onChange={valueInput} value={data.email}/> <br /><br />
-            <label>Password:</label>
-            <input type='text' name='password' placeholder='Digite a palavra-passe' onChange={valueInput} value={data.password}/> <br /><br />
-            <label>Type_User:</label>
-            <input type='text' name='type_user' placeholder='Digite o tipo de usuario' onChange={valueInput} value={data.type_user}/> <br /><br />
+            <label>Data Check_In:</label>
+            <input type='text' name='data_check_in' placeholder='Digite a data de entrada' onChange={valueInput} value={data.data_check_in}/> <br /><br />
+            <label>Data Check_Out:</label>
+            <input type='text' name='data_check_out' placeholder='Digite a data de saida' onChange={valueInput} value={data.data_check_out}/> <br /><br />
+            <label>Numero Pessoas:</label>
+            <input type='text' name='numero_pessoas' placeholder='Digite o numero de pessoas' onChange={valueInput} value={data.numero_pessoas}/> <br /><br />
+            <label>Numero Quarto:</label>
+            <input type='text' name='numero_quarto' placeholder='Digite o numero de quarto' onChange={valueInput} value={data.numero_quarto}/> <br /><br />
+            <label>Preço:</label>
+            <input type='text' name='preco' placeholder='Digite o preço' onChange={valueInput} value={data.preco}/> <br /><br />
+            <label>Status Reserva:</label>
+            <input type='text' name='status_reserva' placeholder='Digite a situação da reserva' onChange={valueInput} value={data.status_reserva}/> <br /><br />
 
             <button type='submit'>Guardar Alterações</button>
         </form>

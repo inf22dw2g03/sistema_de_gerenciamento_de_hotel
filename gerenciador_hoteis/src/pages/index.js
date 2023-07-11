@@ -49,10 +49,10 @@ export default function Home() {
       <main >
         <Link href={"/cadastrar"}><button type="button">Cadastrar</button> </Link>
         <Link href={"/login"}><button type="button">Login</button> </Link>
-        <Link href={"/"}><button type="button">usuario</button> </Link>
-        <Link href={"/Hotel/listar_hotel"}><button type="button">hotel</button> </Link>
-        <Link href={"/Quarto/listar_quartos"}><button type="button">quartos</button> </Link>
-        <Link href={"/Reserva/listar_reserva"}><button type="button">reserva</button> </Link>
+        <Link href={"/"}><button type="button">Usuario</button> </Link>
+        <Link href={"/Hotel/listar_hotel"}><button type="button">Hotel</button> </Link>
+        <Link href={"/Quarto/listar_quartos"}><button type="button">Quartos</button> </Link>
+        <Link href={"/Reserva/listar_reserva"}><button type="button">Reserva</button> </Link>
         <h2>Listar Usuarios</h2>
 
         {message ? <p>{message}</p> : ""}

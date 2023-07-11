@@ -17,9 +17,9 @@ export default function Visualizar() {
   //console.log(router.query.id);
   const [id] = useState(router.query.id);
 
-  const getUser = async () => {
+  const getQuarto = async () => {
     if (id === undefined) {
-      setMessage("Erro: Usuario não encontrado!");
+      setMessage("Erro: Quarto não encontrado!");
       return
     }
 
@@ -28,12 +28,12 @@ export default function Visualizar() {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-    await axios.get("http://localhost:3000/usuario/" + id, config)
+    await axios.get("http://localhost:3000/quarto/" + id, config)
       .then((response) => {
-        console.log(response.data.usuario);
+        console.log(response.data.quarto);
         //Atribuir o registro no state data
 
-        setData(response.data.usuario);
+        setData(response.data.quarto);
       }).catch((err) => {//Acessa o catch quando a API retornar erro
         //Acessa ao IF quando a API retornar erro
         if (err.response) {
@@ -49,7 +49,7 @@ export default function Visualizar() {
   // useEffect é usado para lidar com efeitos colaterais e um componente.
   //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
   useEffect(() => {
-    getUser();
+    getQuarto();
   }, [id]);
 
   return (
@@ -64,13 +64,13 @@ export default function Visualizar() {
         <Link href={"/"}><button type="button">Listar</button> </Link>{" "}
         <Link href={`/editar/${data.id}`}> <button type="button">Editar</button></Link>{" "}
 
-        <h2>Detalhes do Usuario</h2>
+        <h2>Detalhes do Quarto</h2>
 
         {message ? <p>{message}</p> : ""}
 
         <span>ID: {data.id}</span><br />
-        <span>Name: {data.name}</span><br />
-        <span>Email: {data.email}</span><br />
+        <span>Numero: {data.numero_quarto}</span><br />
+        <span>Disponibilidade: {data.disponibilidade}</span><br />
 
       </main>
     </>

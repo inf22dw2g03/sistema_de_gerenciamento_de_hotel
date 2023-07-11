@@ -22,7 +22,7 @@ export default function Editar() {
     const router = useRouter();
     const [id] = useState(router.query.id);
 
-    const getUser = async () => {
+    const getHotel = async () => {
         if (id === undefined){
         setMessage("Erro: Hotel nao encontrado!");
         return
@@ -80,7 +80,7 @@ export default function Editar() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <Link href={"/"}><button type="button">Listar</button> </Link>
+        <Link href={"/"}><button type="button">Listar Hoteis</button> </Link>
 
         <h2>Editar o Hotel</h2>
 

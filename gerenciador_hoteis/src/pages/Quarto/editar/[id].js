@@ -9,11 +9,11 @@ export default function Editar() {
 
     const [data, setData] = useState({
         id: '',
-        name: '',
-        address: '',
-        email: '',
-        password: '',
-        type_user: ''
+        numero_quarto: '',
+        tipo_quart: '',
+        numero_cama: '',
+        preco_noite: '',
+        disponibilidade: ''
     });
 
     const [message, setMessage] = useState("");
@@ -21,7 +21,7 @@ export default function Editar() {
     const router = useRouter();
     const [id] = useState(router.query.id);
 
-    const getUser = async () => {
+    const getQuarto = async () => {
         if (id === undefined){
         setMessage("Erro: Usuario nao encontrado!");
         return
@@ -32,9 +32,9 @@ export default function Editar() {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         };
-        await axios.get("http://localhost:3000/usuario/" + id, config)
+        await axios.get("http://localhost:3000/quarto/" + id, config)
         .then((response) => {
-            setData(response.data.usuario);
+            setData(response.data.quarto);
         }).catch((err) => {
             if (err.response){
                 setMessage(err.response.data.mensagem);
@@ -45,12 +45,12 @@ export default function Editar() {
     }
 
     useEffect(() => {
-        getUser();
+        getQuarto();
       }, [id]);
 
-      const valueInput = (e) => setData({...data, [e.target.name]: e.target.value});
+      const valueInput = (e) => setData({...data, [e.target.numero_quarto]: e.target.value});
 
-      const editUser = async (e) => {
+      const editQuarto = async (e) => {
         e.preventDefault();
 
         const headers = {
@@ -58,7 +58,7 @@ export default function Editar() {
                 'Content-Type': 'application/json'
             }
         };
-        await axios.put('http://localhost:3000/usuario/', data, headers)
+        await axios.put('http://localhost:3000/quarto/', data, headers)
         .then((response) => {
             setMessage(response.data.mensagem);
         }).catch((err) => {
@@ -81,23 +81,23 @@ export default function Editar() {
       <main >
         <Link href={"/"}><button type="button">Listar</button> </Link>
 
-        <h2>Editar o Usuario</h2>
+        <h2>Editar o Quarto</h2>
 
         {message ? <p>{message}</p> : ""}
         
-        <form onSubmit={editUser}>
+        <form onSubmit={editQuarto}>
             <input type='hidden' name='id' value={data.id} />
 
-            <label>Name:</label>
-            <input type='text' name='name' placeholder='Digite o nome' onChange={valueInput} value={data.name}/> <br /><br />
+            <label>Numero do quarto:</label>
+            <input type='text' name='numero_quarto' placeholder='Digite o numero do quarto' onChange={valueInput} value={data.numero_quarto}/> <br /><br />
             <label>Endereco:</label>
-            <input type='text' name='address' placeholder='Digite o endereço' onChange={valueInput} value={data.address}/> <br /><br />
-            <label>E-mail:</label>
-            <input type='text' name='email' placeholder='Digite o e-mail' onChange={valueInput} value={data.email}/> <br /><br />
-            <label>Password:</label>
-            <input type='text' name='password' placeholder='Digite a palavra-passe' onChange={valueInput} value={data.password}/> <br /><br />
-            <label>Type_User:</label>
-            <input type='text' name='type_user' placeholder='Digite o tipo de usuario' onChange={valueInput} value={data.type_user}/> <br /><br />
+            <input type='text' name='tipo_quart' placeholder='Digite o tipo de quarto' onChange={valueInput} value={data.tipo_quart}/> <br /><br />
+            <label>Numero de cama:</label>
+            <input type='text' name='numero_cama' placeholder='Digite numeros de cama' onChange={valueInput} value={data.numero_cama}/> <br /><br />
+            <label>Preço por noite:</label>
+            <input type='text' name='preco_noite' placeholder='Digite o preço' onChange={valueInput} value={data.preco_noite}/> <br /><br />
+            <label>Disponibilidade:</label>
+            <input type='text' name='disponibilidade' placeholder='Digite a disponibilidade' onChange={valueInput} value={data.disponibilidade}/> <br /><br />
 
             <button type='submit'>Guardar Alterações</button>
         </form>
