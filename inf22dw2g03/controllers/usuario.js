@@ -41,7 +41,7 @@ router.post("/usuario", async (req, res) => {
     }
   
     try {
-      dados.password = await bcrypt.hash(dados.password, 8);
+      dados.password = await bcryptjs.hash(dados.password, 8);
 
       //console.log(password)
 
