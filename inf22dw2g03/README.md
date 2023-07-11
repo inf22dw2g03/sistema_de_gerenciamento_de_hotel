@@ -92,11 +92,11 @@ criadondo models quarto
 
 controllers -> gerencia as requisições ,rotas e urls, entre outras funcionalidade 
 
-iniciar as imagens do docker
+### iniciar as imagens do docker
+docker compose up
 
-### docker compose up
-atualiza
-### docker compose up --build
+### atualiza
+docker compose up --build
 
-
- 
+### dockerfile como criar imagem
+ docker build -t react .
