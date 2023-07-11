@@ -11,7 +11,7 @@ COPY . .
 RUN npm install --force
 
 # Build do aplicativo React
-RUN npm run dev
+RUN npm run build
 
 # Expõe a porta do servidor de desenvolvimento
 EXPOSE 3000
