@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 //Biblioteca para conectar com a api
 import axios from 'axios';
 import Link from 'next/link';
-import { serviceDelete } from './service/serviceDelete';
+import { serviceDelete } from '../service/serviceDelete';
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [message, setMessage] = useState('');
 
 
-  const fetchUsuarios = async () => {
+  const fetchHotel = async () => {
     try {
       const response = await axios.get('http://localhost:3000/hotel');
 
@@ -24,14 +24,14 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    fetchUsuarios();
+    fetchHotel();
   }, []);
 
   const deleteUser = async (hotelid) => {
     console.log(hotelid);
     const response = await serviceDelete('http://localhost:3000/hotel' + hotelid);
     setMessage(response);
-    fetchUsuarios();
+    fetchHotel();
   };
 
   return (
@@ -43,12 +43,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <Link href={"/cadastrar"}><button type="button">Cadastrar</button> </Link>
-        <Link href={"/login"}><button type="button">Login</button> </Link>
-        <Link href={"/"}><button type="button">usuario</button> </Link>
-        <Link href={"/listar_hotel"}><button type="button">hotel</button> </Link>
-        <Link href={"/listar_quartos"}><button type="button">quartos</button> </Link>
-        <Link href={"/listar_reserva"}><button type="button">reserva</button> </Link>
+        <Link href={"../cadastrar"}><button type="button">Cadastrar</button> </Link>
+        <Link href={"../login"}><button type="button">Login</button> </Link>
+        <Link href={"../"}><button type="button">Usuario</button> </Link>
+        <Link href={"../Quarto/listar_quartos"}><button type="button">Quartos</button> </Link>
+        <Link href={"../Reserva/listar_reserva"}><button type="button">Reserva</button> </Link>
         <h2>Listar hotel</h2>
 
         {message ? <p>{message}</p> : ""}
