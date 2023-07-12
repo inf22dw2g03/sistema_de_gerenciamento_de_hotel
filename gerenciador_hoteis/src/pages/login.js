@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [Name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:3000/login', {
-        email,
+        name: Name,
         password,
       });
 
@@ -41,8 +41,8 @@ export default function Login() {
       {message && <p>{message}</p>}
 
       <label>
-        Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+       Name:
+        <input type="Name" value={Name} onChange={(e) => setName(e.target.value)} />
       </label>
 
       <label>
