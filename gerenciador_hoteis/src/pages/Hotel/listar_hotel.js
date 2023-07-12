@@ -12,7 +12,11 @@ export default function Home() {
 
   const fetchHotel = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/hotel');
+      const response = await axios.get('http://localhost:3000/hotel',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
 
       setData(response.data.hotel);
     } catch (error) {
@@ -54,7 +58,7 @@ export default function Home() {
         {data.map(hotel => (
           <div key={hotel.id}>
             <span>ID: {hotel.id}</span><br />
-            <span>Nome: {hotel.name}</span><br />
+            <span>nome: {hotel.nome}</span><br />
             <span>address: {hotel.address}</span><br />
             <span>numero_quartos: {hotel.numero_quartos}</span><br />
             <span>classification: {hotel.classification}</span><br />
