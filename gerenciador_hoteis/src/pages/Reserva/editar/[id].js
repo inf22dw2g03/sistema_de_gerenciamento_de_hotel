@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -22,32 +21,34 @@ export default function Editar() {
     const router = useRouter();
     const [id] = useState(router.query.id);
 
-    const getReserva = async () => {
-        if (id === undefined){
-        setMessage("Erro: Reserva nao encontrado!");
-        return
+    const getReserva = useCallback(async () => {
+        if (id === undefined) {
+          setMessage("Erro: Reserva não encontrada!");
+          return;
         }
-
+      
         const config = {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, 
+          },
         };
-        await axios.get("http://localhost:3000/reserva/" + id, config)
-        .then((response) => {
-            setData(response.data.reserva);
-        }).catch((err) => {
-            if (err.response){
-                setMessage(err.response.data.mensagem);
-            }else{
-                setMessage("Erro: Tente mais tarde!");
-            }
-        });
-    }
+        try {
+          const response = await axios.get("http://localhost:3000/reserva/" + id, config);
+          console.log(response.data.reserva);
+          setData(response.data.reserva);
+        } catch (err) {
+          if (err.response) {
+            setMessage(err.response.data.mensagen);
+          } else {
+            setMessage("Erro: Tente mais tarde!");
+          }
+        }
+      }, [id]);
+      
 
     useEffect(() => {
         getReserva();
-      }, [id]);
+      }, [id, getReserva]);
 
       const valueInput = (e) => setData({...data, [e.target.data_check_in]: e.target.value});
 

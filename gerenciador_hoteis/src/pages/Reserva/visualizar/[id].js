@@ -17,40 +17,36 @@ export default function Visualizar() {
   //console.log(router.query.id);
   const [id] = useState(router.query.id);
 
-  const getReserva = async () => {
+  const getReserva = useCallback(async () => {
     if (id === undefined) {
-      setMessage("Erro: Reserva não encontrado!");
-      return
+      setMessage("Erro: Reserva não encontrada!");
+      return;
     }
-
+  
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-    await axios.get("http://localhost:3000/reserva/" + id, config)
-      .then((response) => {
-        console.log(response.data.reserva);
-        //Atribuir o registro no state data
+    try {
+      const response = await axios.get("http://localhost:3000/reserva/" + id, config);
+      console.log(response.data.reserva);
+      setData(response.data.reserva);
+    } catch (err) {
+      if (err.response) {
+        setMessage(err.response.data.mensagen);
+      } else {
+        setMessage("Erro: Tente mais tarde!");
+      }
+    }
+  }, [id]);
+  
 
-        setData(response.data.reserva);
-      }).catch((err) => {//Acessa o catch quando a API retornar erro
-        //Acessa ao IF quando a API retornar erro
-        if (err.response) {
-          //Atribuir a mensagen no state message
-          setMessage(err.response.data.mensagen);
-        } else {
-          //Atribuir a mensagen no state message
-          setMessage("Erro: Tente mais tarde!");
-        }
-      });
-  }
-
-  // useEffect é usado para lidar com efeitos colaterais e um componente.
-  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
+  // useEffect é usado para lidar com efeitos colaterais em um componente.
+  // Por exemplo, atualizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
   useEffect(() => {
     getReserva();
-  }, [id]);
+  }, [id, getReserva]);
 
   return (
     <>
@@ -60,7 +56,7 @@ export default function Visualizar() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main >
+      <main>
         <Link href={"/"}><button type="button">Listar</button> </Link>{" "}
         <Link href={`/editar/${data.id}`}> <button type="button">Editar</button></Link>{" "}
 
@@ -69,9 +65,8 @@ export default function Visualizar() {
         {message ? <p>{message}</p> : ""}
 
         <span>ID: {data.id}</span><br />
-        <span>data_check_in: {data.data_check_in}</span><br />
-        <span>status_reserva: {data.status_reserva}</span><br />
-
+        <span>Data Check-In: {data.data_check_in}</span><br />
+        <span>Status da Reserva: {data.status_reserva}</span><br />
       </main>
     </>
   )

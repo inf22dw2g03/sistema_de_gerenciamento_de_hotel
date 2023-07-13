@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 //Biblioteca para conectar com a api
 import axios from 'axios';
 import Link from 'next/link';
-import { serviceDelete } from './service/serviceDelete';
+import { serviceDelete } from './pages/usuario/service/serviceDelete';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -63,7 +63,7 @@ export default function Home() {
             <span>E-mail: {usuario.email}</span><br />
             <Link href={`/visualizar/${usuario.id}`}> <button type="button">Visualizar</button></Link>{" "}
             <Link href={`/editar/${usuario.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> deleteUser(usuario.id)}>Apagar</button>{" "}
+            <button type="button" onClick={()=> serviceDelete(usuario.id)}>Apagar</button>{" "}
             <hr />
           </div>
         ))}
