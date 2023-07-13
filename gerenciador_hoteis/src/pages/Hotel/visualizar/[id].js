@@ -11,7 +11,7 @@ export default function Visualizar() {
   const router = useRouter();
   const [id] = useState(router.query.id);
 
-  const getHotel = useCallback(async () => {
+  const getHotel = async () => {
     if (id === undefined) {
       setMessage("Erro: Hotel não encontrado!");
       return;
@@ -22,7 +22,7 @@ export default function Visualizar() {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-<<<<<<< HEAD
+
     await axios.get("http://localhost:3000/hotel/" + id, config)
       .then((response) => {
         console.log(response.data.hotels);
@@ -39,11 +39,9 @@ export default function Visualizar() {
           setMessage("Erro: Tente mais tarde!");
         }
       });
-  }
 
   // useEffect é usado para lidar com efeitos colaterais e um componente.
-  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
-=======
+  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros
     try {
       const response = await axios.get("http://localhost:3000/hotel/" + id, config);
       console.log(response.data.hotel);
@@ -53,12 +51,10 @@ export default function Visualizar() {
         setMessage(err.response.data.mensagen);
       } else {
         setMessage("Erro: Tente mais tarde!");
-      }
+      },
     }
-  }, [id]);
+  }
   
-
->>>>>>> a1152b0f2c6ee207e9b3f0ee893d8b9a51d258ac
   useEffect(() => {
     getHotel();
   }, [id, getHotel]);
