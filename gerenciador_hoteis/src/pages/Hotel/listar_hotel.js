@@ -55,7 +55,6 @@ export default function Home() {
         <h2>Listar hotel</h2>
 
         {message ? <p>{message}</p> : ""}
-<<<<<<< HEAD
         {data.map(hotels => (
           <div key={hotels.id}>
             <span>ID: {hotels.id}</span><br />
@@ -68,20 +67,6 @@ export default function Home() {
             <Link href={`/visualizar/${hotels.id}`}> <button type="button">Visualizar</button></Link>{" "}
             <Link href={`/editar/${hotels.id}`}> <button type="button">Editar</button></Link>{" "}
             <button type="button" onClick={()=> deleteHotel(hotels.id)}>Apagar</button>{" "}
-=======
-        {data.map(hotel => (
-          <div key={hotel.id}>
-            <span>ID: {hotel.id}</span><br />
-            <span>nome: {hotel.nome}</span><br />
-            <span>address: {hotel.address}</span><br />
-            <span>numero_quartos: {hotel.numero_quartos}</span><br />
-            <span>classification: {hotel.classification}</span><br />
-            <span>preco_noite {hotel.preco_noite}</span><br />
-            <span>disponibilidade {hotel.disponibilidade}</span><br />
-            <Link href={`/visualizar/${hotel.id}`}> <button type="button">Visualizar</button></Link>{" "}
-            <Link href={`/editar/${hotel.id}`}> <button type="button">Editar</button></Link>{" "}
-            <button type="button" onClick={()=> serviceDelete(hotel.id)}>Apagar</button>{" "}
->>>>>>> a1152b0f2c6ee207e9b3f0ee893d8b9a51d258ac
             <hr />
           </div>
         ))}

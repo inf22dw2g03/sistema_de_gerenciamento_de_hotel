@@ -15,19 +15,8 @@ export default function Editar() {
     disponibilidade: ''
   });
 
-<<<<<<< HEAD
-    const [data, setData] = useState({
-        id: '',
-        nome: '',
-        address: '',
-        numero_quartos: '',
-        classification: '',
-        preco_noite: '',
-        disponibilidade: ''
-    });
-=======
   const [message, setMessage] = useState('');
->>>>>>> a1152b0f2c6ee207e9b3f0ee893d8b9a51d258ac
+
 
   const router = useRouter();
   const [id] = useState(router.query.id);
@@ -156,7 +145,7 @@ export default function Editar() {
           />{' '}
           <br />
           <br />
-          <label>Disponabilidade:</label>
+          <label>Dispinabilidade:</label>
           <input
             type="text"
             name="disponibilidade"
