@@ -18,7 +18,7 @@ COPY . .
 RUN npm run build
 
 # Expõe a porta do servidor de desenvolvimento
-EXPOSE 3001
+EXPOSE 3000
 
 # Comando para iniciar o servidor de desenvolvimento
 CMD ["npm", "run",  "build"]
