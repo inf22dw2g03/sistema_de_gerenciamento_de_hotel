@@ -9,7 +9,7 @@ export default function Editar() {
 
     const [data, setData] = useState({
         id: '',
-        name: '',
+        nome: '',
         address: '',
         numero_quartos: '',
         classification: '',

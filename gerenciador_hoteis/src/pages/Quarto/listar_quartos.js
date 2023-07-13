@@ -47,7 +47,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <Link href={"../cadastrar"}><button type="button">Cadastrar</button> </Link>
+        <Link href={"./criar"}><button type="button">Criar Quarto</button> </Link>
         <Link href={"../login"}><button type="button">Login</button> </Link>
         <Link href={"../"}><button type="button">Usuario</button> </Link>
         <Link href={"../Hotel/listar_hotel"}><button type="button">Hotel</button> </Link>

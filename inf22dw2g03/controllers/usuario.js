@@ -3,7 +3,7 @@ const express = require('express');
 const { eAdmin } = require('./auth');
 const router = express.Router(); //chamar a função 
 const db = require('./../db/models');//incluir o arquivo que tem a conecção com a base de dados 
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 
 router.get('/usuario', async  (req, res) =>{
     const usuario = await db.usuario.findAll({

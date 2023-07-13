@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // // Associação muitos para um
-      // this.belongsTo(models.hotel, { foreignKey: 'hotelId' });
-      // // Associação de um para um
-      // this.hasOne(models.reserva, { foreignKey: 'reservaId' });
-      // this.hasOne(models.quartos, { foreignKey: 'quartosId' });
+      this.belongsTo(models.hotel, { foreignKey: 'id' });
+      // Associação de um para um
+      this.hasOne(models.reserva, { foreignKey: 'id' });
+      this.hasOne(models.quartos, { foreignKey: 'id' });
 
 
     }

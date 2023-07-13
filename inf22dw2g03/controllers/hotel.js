@@ -8,7 +8,7 @@ router.get('/hotel', async (req, res) => {
     const hotels = await db.hotel.findAll({
       order: [['id', 'DESC']],
     });
-    return res.json({ hotels });
+    return res.json({ hotel: hotels });
   } catch (error) {
     return res.status(400).json({
       mensagem: 'Erro ao buscar hotéis.',
@@ -41,7 +41,7 @@ router.get('/hotel/:id', async (req, res) => {
   }
 });
 
-router.post('/hotel',eAdmin, async (req, res) => {
+router.post('/hotel', async (req, res) => {
   try {
     const dados = req.body;
     const novoHotel = await db.hotel.create(dados);

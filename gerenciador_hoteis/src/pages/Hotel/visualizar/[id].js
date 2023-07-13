@@ -30,10 +30,10 @@ export default function Visualizar() {
     };
     await axios.get("http://localhost:3000/hotel/" + id, config)
       .then((response) => {
-        console.log(response.data.hotel);
+        console.log(response.data.hotels);
         //Atribuir o registro no state data
 
-        setData(response.data.hotel);
+        setData(response.data.hotels);
       }).catch((err) => {//Acessa o catch quando a API retornar erro
         //Acessa ao IF quando a API retornar erro
         if (err.response) {

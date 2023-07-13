@@ -95,7 +95,7 @@ export default function Editar() {
             <label>E-mail:</label>
             <input type='text' name='email' placeholder='Digite o e-mail' onChange={valueInput} value={data.email}/> <br /><br />
             <label>Password:</label>
-            <input type='text' name='password' placeholder='Digite a palavra-passe' onChange={valueInput} value={data.password}/> <br /><br />
+            <input type='password' name='password' placeholder='Digite a palavra-passe' onChange={valueInput} value={data.password}/> <br /><br />
             <label>Type_User:</label>
             <input type='text' name='type_user' placeholder='Digite o tipo de usuario' onChange={valueInput} value={data.type_user}/> <br /><br />
 
