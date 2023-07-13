@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev":"next dev",
-    "start": "next start",
+    "start": " node index.js",
     "build": "next build",
     "test": "next test",
     "eject": "next eject"
