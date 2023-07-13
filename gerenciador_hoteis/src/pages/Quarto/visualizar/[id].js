@@ -17,40 +17,34 @@ export default function Visualizar() {
   //console.log(router.query.id);
   const [id] = useState(router.query.id);
 
-  const getQuarto = async () => {
+  const getQuarto = useCallback(async () => {
     if (id === undefined) {
       setMessage("Erro: Quarto não encontrado!");
-      return
+      return;
     }
-
+  
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-    await axios.get("http://localhost:3000/quarto/" + id, config)
-      .then((response) => {
-        console.log(response.data.quarto);
-        //Atribuir o registro no state data
+    try {
+      const response = await axios.get("http://localhost:3000/quarto/" + id, config);
+      console.log(response.data.quarto);
+      setData(response.data.quarto);
+    } catch (err) {
+      if (err.response) {
+        setMessage(err.response.data.mensagen);
+      } else {
+        setMessage("Erro: Tente mais tarde!");
+      }
+    }
+  }, [id]);
+  
 
-        setData(response.data.quarto);
-      }).catch((err) => {//Acessa o catch quando a API retornar erro
-        //Acessa ao IF quando a API retornar erro
-        if (err.response) {
-          //Atribuir a mensagen no state message
-          setMessage(err.response.data.mensagen);
-        } else {
-          //Atribuir a mensagen no state message
-          setMessage("Erro: Tente mais tarde!");
-        }
-      });
-  }
-
-  // useEffect é usado para lidar com efeitos colaterais e um componente.
-  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
   useEffect(() => {
     getQuarto();
-  }, [id]);
+  }, [id, getQuarto]);
 
   return (
     <>
@@ -74,5 +68,5 @@ export default function Visualizar() {
 
       </main>
     </>
-  )
+  );
 }

@@ -18,8 +18,12 @@ COPY . .
 #RUN npm run build
 
 # Expõe a porta do servidor de desenvolvimento
-EXPOSE 3001
+EXPOSE 3000
 
 # Comando para iniciar o servidor de desenvolvimento
+<<<<<<< HEAD
 
 CMD ["npm", "run", "start"]
+=======
+CMD ["npm", "run",  "build"]
+>>>>>>> a1152b0f2c6ee207e9b3f0ee893d8b9a51d258ac

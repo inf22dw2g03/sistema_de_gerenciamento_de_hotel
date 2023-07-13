@@ -1,19 +1,25 @@
-import axios from "axios";
+// pages/Hotel/service/serviceDelete.js
 
+import axios from 'axios';
+import React from 'react';
 
-export const serviceDelete = async (url) => {
-    var mensagem;
+const ServiceDelete = async (url) => {
+  let mensagem;
 
-    await axios.delete(url)
+  await axios
+    .delete(url)
     .then((response) => {
-        mensagem = response.data.mensagem;
-    }).catch((err) => {
-        if (err.response){
-            mensagem = err.response.data.mensagem;
-        }else{
-            mensagem = "Erro: Tente novamente mais tarde ou entre em contacto com ...!";
-        }
+      mensagem = response.data.mensagem;
     })
+    .catch((err) => {
+      if (err.response) {
+        mensagem = err.response.data.mensagem;
+      } else {
+        mensagem = 'Erro: Tente novamente mais tarde ou entre em contato com ...!';
+      }
+    });
 
-    return mensagem;
-}
+  return mensagem;
+};
+
+export default ServiceDelete;

@@ -17,40 +17,36 @@ export default function Visualizar() {
   //console.log(router.query.id);
   const [id] = useState(router.query.id);
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     if (id === undefined) {
       setMessage("Erro: Usuario não encontrado!");
-      return
+      return;
     }
-
+  
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`, 
       },
     };
-    await axios.get("http://localhost:3000/usuario/" + id, config)
-      .then((response) => {
-        console.log(response.data.usuario);
-        //Atribuir o registro no state data
+    try {
+      const response = await axios.get("http://localhost:3000/usuario/" + id, config);
+      console.log(response.data.usuario);
+      setData(response.data.usuario);
+    } catch (err) {
+      if (err.response) {
+        setMessage(err.response.data.mensagen);
+      } else {
+        setMessage("Erro: Tente mais tarde!");
+      }
+    }
+  }, [id]);
+  
 
-        setData(response.data.usuario);
-      }).catch((err) => {//Acessa o catch quando a API retornar erro
-        //Acessa ao IF quando a API retornar erro
-        if (err.response) {
-          //Atribuir a mensagen no state message
-          setMessage(err.response.data.mensagen);
-        } else {
-          //Atribuir a mensagen no state message
-          setMessage("Erro: Tente mais tarde!");
-        }
-      });
-  }
-
-  // useEffect é usado para lidar com efeitos colaterais e um componente.
-  //Por exemplo, ataulizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
+  // useEffect é usado para lidar com efeitos colaterais em um componente.
+  // Por exemplo, atualizar o estado do componente, fazer chamadas a APIs, manipular eventos, entre outros.
   useEffect(() => {
     getUser();
-  }, [id]);
+  }, [id, getUser]);
 
   return (
     <>
@@ -60,7 +56,7 @@ export default function Visualizar() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main >
+      <main>
         <Link href={"/"}><button type="button">Listar</button> </Link>{" "}
         <Link href={`/editar/${data.id}`}> <button type="button">Editar</button></Link>{" "}
 
@@ -71,7 +67,6 @@ export default function Visualizar() {
         <span>ID: {data.id}</span><br />
         <span>Name: {data.name}</span><br />
         <span>Email: {data.email}</span><br />
-
       </main>
     </>
   )

@@ -1,9 +1,8 @@
-// pages/Hotel/service/serviceDelete.js
+// ../usuario/service/serviceDelete.js
 
 import axios from 'axios';
-import React from 'react';
 
-const ServiceDelete = async (url) => {
+export const serviceDelete = async (url) => {
   let mensagem;
 
   await axios
@@ -22,4 +21,3 @@ const ServiceDelete = async (url) => {
   return mensagem;
 };
 
-export default ServiceDelete;

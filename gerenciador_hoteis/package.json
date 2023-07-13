@@ -2,24 +2,47 @@
   "name": "gerenciador_hoteis",
   "version": "0.1.0",
   "private": true,
-  
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
-    "cors": "^2.8.5",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
-    "next": "^13.4.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-scripts": "5.0.1",
+    "eslint-config-next": "^13.4.9",
     "gapi-script": "^1.2.0",
-    "react-router-dom": "^6.12.1"
+    "next": "^13.4.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.12.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "dev":"next dev",
+    "start": " node index.js",
+    "build": "next build",
+    "test": "next test",
+    "eject": "next eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

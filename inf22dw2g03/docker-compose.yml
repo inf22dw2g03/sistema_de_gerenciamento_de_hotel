@@ -21,3 +21,17 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_BASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
+
+
+  react-app:
+    build:
+      context: ../gerenciador_hoteis
+      dockerfile: dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - default
+        
+    depends_on:
+      - app
+    

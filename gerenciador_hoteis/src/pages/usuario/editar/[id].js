@@ -9,32 +9,18 @@ export default function Editar() {
     id: '',
     name: '',
     address: '',
-    numero_quartos: '',
-    classification: '',
-    preco_noite: '',
-    disponibilidade: ''
+    email: '',
+    password: '',
+    type_user: ''
   });
 
-<<<<<<< HEAD
-    const [data, setData] = useState({
-        id: '',
-        nome: '',
-        address: '',
-        numero_quartos: '',
-        classification: '',
-        preco_noite: '',
-        disponibilidade: ''
-    });
-=======
   const [message, setMessage] = useState('');
->>>>>>> a1152b0f2c6ee207e9b3f0ee893d8b9a51d258ac
 
   const router = useRouter();
   const [id] = useState(router.query.id);
-
-  const getHotel = useCallback(async () => {
+  const getUser = useCallback(async () => {
     if (id === undefined) {
-      setMessage("Erro: Hotel não encontrado!");
+      setMessage("Erro: Usuario não encontrado!");
       return;
     }
   
@@ -44,9 +30,9 @@ export default function Editar() {
       },
     };
     try {
-      const response = await axios.get("http://localhost:3000/hotel/" + id, config);
-      console.log(response.data.hotel);
-      setData(response.data.hotel);
+      const response = await axios.get("http://localhost:3000/usuario/" + id, config);
+      console.log(response.data.usuario);
+      setData(response.data.usuario);
     } catch (err) {
       if (err.response) {
         setMessage(err.response.data.mensagen);
@@ -58,12 +44,12 @@ export default function Editar() {
   
 
   useEffect(() => {
-    getHotel();
-  }, [id, getHotel]);
+    getUser();
+  }, [id, getUser]);
 
   const valueInput = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
-  const editHotel = async (e) => {
+  const editUser = async (e) => {
     e.preventDefault();
 
     const headers = {
@@ -73,7 +59,7 @@ export default function Editar() {
     };
 
     await axios
-      .put('http://localhost:3000/hotel/', data, headers)
+      .put('http://localhost:3000/usuario/', data, headers)
       .then((response) => {
         setMessage(response.data.mensagem);
       })
@@ -97,13 +83,13 @@ export default function Editar() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Link href={'/'}><button type="button">Listar Hoteis</button> </Link>
+        <Link href={'/'}><button type="button">Listar</button> </Link>
 
-        <h2>Editar o Hotel</h2>
+        <h2>Editar o Usuário</h2>
 
         {message ? <p>{message}</p> : ''}
 
-        <form onSubmit={editHotel}>
+        <form onSubmit={editUser}>
           <input type="hidden" name="id" value={data.id} />
 
           <label>Name:</label>
@@ -126,43 +112,33 @@ export default function Editar() {
           />{' '}
           <br />
           <br />
-          <label>Numero de Quartos:</label>
+          <label>E-mail:</label>
           <input
             type="text"
-            name="numero_quartos"
-            placeholder="Digite o numero de quartos"
+            name="email"
+            placeholder="Digite o e-mail"
             onChange={valueInput}
-            value={data.numero_quartos}
+            value={data.email}
           />{' '}
           <br />
           <br />
-          <label>Classification:</label>
+          <label>Password:</label>
           <input
             type="text"
-            name="classification"
-            placeholder="Digite a Classificação"
+            name="password"
+            placeholder="Digite a palavra-passe"
             onChange={valueInput}
-            value={data.classification}
+            value={data.password}
           />{' '}
           <br />
           <br />
-          <label>Preço por noite:</label>
+          <label>Type_User:</label>
           <input
             type="text"
-            name="preco_noite"
-            placeholder="Digite o preço"
+            name="type_user"
+            placeholder="Digite o tipo de usuário"
             onChange={valueInput}
-            value={data.preco_noite}
-          />{' '}
-          <br />
-          <br />
-          <label>Disponabilidade:</label>
-          <input
-            type="text"
-            name="disponibilidade"
-            placeholder="Digite a disponibilidade"
-            onChange={valueInput}
-            value={data.disponibilidade}
+            value={data.type_user}
           />{' '}
           <br />
           <br />
@@ -173,5 +149,3 @@ export default function Editar() {
     </>
   );
 }
-
-
